@@ -1,4 +1,4 @@
-import { useParams } from "react-router-dom";
+import { useNavigate, useParams } from "react-router-dom";
 import { useEffect, useState } from "react";
 import { FlagIcon } from "@heroicons/react/16/solid";
 import ItemSeguimiento from "../components/ItemSeguimiento";
@@ -9,19 +9,23 @@ const ViewTicket = () => {
   const { id } = useParams();
   const [ticket, SetTicket] = useState<Ticket>();
   const [comments, setComments] = useState<TicketComment[]>();
-
+  const navigate = useNavigate();
   useEffect(() => {
     if (!id) return;
-    fetchTicket(id).then((ticket) => {
-      SetTicket(ticket);
-    });
-
-    fetchTicketComments(id).then((comments) => {
-      const commentsSorted = comments.comments.reverse();
-      setComments(commentsSorted);
-    });
-
-  }, [id]);
+    fetchTicket(id)
+      .then((ticket) => {
+        console.log(ticket);
+        SetTicket(ticket);
+        fetchTicketComments(id).then((comments) => {
+          const commentsSorted = comments.comments.reverse();
+          setComments(commentsSorted);
+        });
+      })
+      .catch(() => {
+        navigate(`/`);
+        return;
+      });
+  }, [id, navigate]);
   return (
     <article id={"ticket-" + id} className="p-1 flex flex-col gap-4">
       <header className="flex flex-col">
@@ -79,10 +83,12 @@ const ViewTicket = () => {
 };
 
 const fetchTicket = async (id: string): Promise<Ticket> => {
+
+  
   const resp = await fetch(`https://api.clickup.com/api/v2/task/${id}`, {
     method: "GET",
     headers: {
-      Authorization: "pk_72746030_FH0UPM107BLXA5BZUHMMDMRKGQVTO1J4",
+      Authorization: import.meta.env.API_CLICKUP_KEY ?? "",
     },
   });
   return await resp.json();
@@ -96,7 +102,8 @@ const fetchTicketComments = async (
     {
       method: "GET",
       headers: {
-        Authorization: "pk_72746030_FH0UPM107BLXA5BZUHMMDMRKGQVTO1J4",
+        Authorization: import.meta.env.API_CLICKUP_KEY ?? "",
+        "Access-Control-Allow-Origin": "https://api.clickup.com",
       },
     }
   );
