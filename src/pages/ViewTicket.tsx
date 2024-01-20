@@ -83,12 +83,11 @@ const ViewTicket = () => {
 };
 
 const fetchTicket = async (id: string): Promise<Ticket> => {
-
-  
   const resp = await fetch(`https://api.clickup.com/api/v2/task/${id}`, {
     method: "GET",
     headers: {
-      Authorization: import.meta.env.API_CLICKUP_KEY ?? "",
+      Authorization: import.meta.env.VITE_API_KEY,
+      "Content-Type": "application/json",
     },
   });
   return await resp.json();
@@ -102,7 +101,7 @@ const fetchTicketComments = async (
     {
       method: "GET",
       headers: {
-        Authorization: import.meta.env.API_CLICKUP_KEY ?? "",
+        Authorization: import.meta.env.VITE_API_KEY,
         "Access-Control-Allow-Origin": "https://api.clickup.com",
       },
     }
