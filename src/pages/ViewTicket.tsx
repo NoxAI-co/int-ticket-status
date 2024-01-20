@@ -90,6 +90,8 @@ const fetchTicket = async (id: string): Promise<Ticket> => {
       "Content-Type": "application/json",
     },
   });
+
+  if (resp.status != 200) throw new Error("Ticket no encontrado");
   return await resp.json();
 };
 
