@@ -5,7 +5,7 @@ import { NavLink } from "react-router-dom";
 const Layout = () => {
   return (
     <>
-      <header className="inline-flex px-5 justify-beetwen items-center py-5 bg-neutral-800">
+      <header className="inline-flex px-5 rounded-b-md justify-beetwen items-center mx-2 py-5 bg-neutral-800">
           <NavLink to="/" className="text-neutral-400">
             <HomeIcon className="h-7" />
           </NavLink>
