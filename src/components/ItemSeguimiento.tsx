@@ -11,22 +11,35 @@ const ItemSeguimiento = ({
   ...rest
 }: ItemSeguimientoProps) => {
   return (
-    <article className="w-full border border-neutral-700 rounded-sm" {...rest}>
-      <header className={" py-1 px-2 text-md " + (created ? "bg-emerald-800" : "bg-neutral-700")}>
-        {new Date(Number(fecha))
-                .toLocaleDateString("es-ES", {
-                  weekday: "short",
-                  year: "numeric",
-                  month: "short",
-                  day: "numeric",
-                  hour: "numeric",
-                  minute: "numeric",
-                })
-                .replace(".", ",")}
+    <article
+      className={`rounded-2xl p-4 mb-4 ${
+        created ? "bg-tertiary" : "bg-stone-100 border border-gray-300"
+      }`}
+      {...rest}
+    >
+      <header className="text-md grid">
+        <span className="text-md">
+          {new Date(Number(fecha)).toLocaleDateString("es-ES", {
+            weekday: "long",
+          }).toUpperCase()}
+        </span>
+        <span className="text-xl font-bold">
+          {new Date(Number(fecha))
+            .toLocaleDateString("es-ES", {
+              year: "numeric",
+              month: "short",
+              day: "numeric",
+            })
+            .replace(".", ",")}
+        </span>
       </header>
-      <p className="text-sm px-2">
-        {descripcion}
-      </p>
+      <span className="mt-12">
+        {new Date(Number(fecha)).toLocaleTimeString("es-ES", {
+          hour: "numeric",
+          minute: "numeric",
+        })}
+      </span>
+      <p className="text-md mt-2">{descripcion}</p>
     </article>
   );
 };

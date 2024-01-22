@@ -14,7 +14,6 @@ const ViewTicket = () => {
     if (!id) return;
     fetchTicket(id)
       .then((ticket) => {
-        console.log(ticket);
         SetTicket(ticket);
         fetchTicketComments(id).then((comments) => {
           const commentsSorted = comments.comments.reverse();
@@ -60,7 +59,7 @@ const ViewTicket = () => {
       </div>
       <hr className="border-neutral-700" />
       <article>
-        <h2 className="text-lg font-bold">Seguimiento</h2>
+        <h2 className="text-lg font-bold mb-8">Seguimiento</h2>
         <ItemSeguimiento
           created={true}
           fecha={ticket ? ticket.date_created : 0}
