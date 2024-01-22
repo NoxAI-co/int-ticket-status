@@ -54,12 +54,12 @@ const ViewTicket = () => {
       <hr className=" border-neutral-700" />
       <div className="flex flex-col gap-2">
         <h2 className="text-lg font-bold">Descripción</h2>
-        <p className="text-xs text-pretty text-neutral-300">
+        <p className="text-xs text-prett">
           {ticket?.description}
         </p>
       </div>
       <hr className="border-neutral-700" />
-      <main className="flex flex-col gap-2">
+      <article>
         <h2 className="text-lg font-bold">Seguimiento</h2>
         <ItemSeguimiento
           created={true}
@@ -77,7 +77,7 @@ const ViewTicket = () => {
         ) : (
           <></>
         )}
-      </main>
+      </article>
     </article>
   );
 };

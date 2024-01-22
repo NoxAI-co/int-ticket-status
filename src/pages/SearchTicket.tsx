@@ -24,7 +24,7 @@ const SearchTicket = () => {
       <label>
         Radicado
         <input
-          className=" bg-neutral-600 px-4 w-full py-2 rounded-md placeholder:text-neutral-400 focus:outline-none"
+          className=" bg-stone-200 px-4 w-full py-2 rounded-md placeholder:text-neutral-600 focus:outline-none"
           placeholder="Numero de radicado"
           type="text"
           name="id-radicado"
