@@ -39,12 +39,17 @@ const ViewTicket = () => {
           height="100%"
           viewBox="0 0 400 160"
           backgroundColor="#e5e7eb"
-          foregroundColor="#ecebeb"
+          foregroundColor="#d9d4d4"
         >
-          <rect x="10" y="20" rx="5" ry="5" width="30%" height="20" />
-          <rect x="10" y="50" rx="5" ry="5" width="70%" height="20" />
-          <rect x="10" y="80" rx="5" ry="5" width="100%" height="200" />
-          <rect x="10" y="110" rx="5" ry="5" width="80%" height="20" />
+          <rect x="10" y="10" rx="5" ry="5" width="70" height="20" />
+          <rect x="10" y="40" rx="5" ry="5" width="50" height="10" />
+          <rect x="10" y="60" rx="5" ry="5" width="100" height="20" />
+          <rect x="10" y="90" rx="5" ry="5" width="50" height="10" />
+          <rect x="300" y="90" rx="5" ry="5" width="50" height="10" />
+          <rect x="10" y="120" rx="5" ry="5" width="100" height="20" />
+          <rect x="10" y="150" rx="5" ry="5" width="380" height="10" />
+          <rect x="10" y="180" rx="5" ry="5" width="380" height="10" />
+          <rect x="10" y="200" rx="5" ry="5" width="380" height="10" />
         </ContentLoader>
       ) : (
         <>
