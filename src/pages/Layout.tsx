@@ -1,8 +1,10 @@
 import { Outlet } from "react-router-dom";
+import { Toaster } from "sonner";
 
 const Layout = () => {
   return (
     <>
+    <Toaster closeButton={true} richColors visibleToasts={1} />
       <img
         src="/public/images/gestoru-logo.webp"
         alt="Ticket Status"

@@ -2,6 +2,7 @@ import { useNavigate, useParams } from "react-router-dom";
 import { useEffect, useState } from "react";
 import { Link } from "react-router-dom";
 import { FlagIcon } from "@heroicons/react/16/solid";
+import { toast, Toaster } from "sonner";
 import ItemSeguimiento from "../components/ItemSeguimiento";
 import { Ticket, TicketComment, TicketCommentResponse } from "../types/Ticket";
 import calculateTimeRelative from "../helpers/timeRelative";
@@ -26,6 +27,9 @@ const ViewTicket = () => {
         });
       })
       .catch(() => {
+        toast.info("No existe un radicado con este número", {
+          position: "top-right",
+        });
         navigate(`/`);
         return;
       });
