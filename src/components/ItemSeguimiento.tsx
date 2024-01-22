@@ -12,16 +12,16 @@ const ItemSeguimiento = ({
 }: ItemSeguimientoProps) => {
   return (
     <article
-      className={`rounded-2xl p-4 mb-4 ${
+      className={`rounded-2xl p-4 mb-4 transition-colors hover:bg-stone-200 ${
         created ? "bg-tertiary" : "bg-stone-100 border border-gray-300"
       }`}
       {...rest}
     >
       <header className="text-md grid">
-        <span className="text-md">
+        <span className="text-md capitalize">
           {new Date(Number(fecha)).toLocaleDateString("es-ES", {
             weekday: "long",
-          }).toUpperCase()}
+          })}
         </span>
         <span className="text-xl font-bold">
           {new Date(Number(fecha))

@@ -50,15 +50,15 @@ const ViewTicket = () => {
           </p>
         </div>
       </header>
-      <hr className=" border-neutral-700" />
+      <hr className="h-0.5 bg-gradient-to-r from-tertiarys to-transparent border-none" />
       <div className="flex flex-col gap-2">
         <h2 className="text-lg font-bold">Descripción</h2>
-        <p className="text-xs text-prett">
+        <p className="text-sm text-prett">
           {ticket?.description}
         </p>
       </div>
-      <hr className="border-neutral-700" />
-      <article>
+      <hr className="h-0.5 bg-gradient-to-r from-transparent via-stone-300 to-transparent border-none" />
+      <article className="max-h-[28vh] overflow-auto">
         <h2 className="text-lg font-bold mb-8">Seguimiento</h2>
         <ItemSeguimiento
           created={true}
