@@ -14,9 +14,6 @@ const Layout = () => {
         </h1>
       </header>
       <section className="max-w-7xl flex flex-col gap-8 bg-white p-8 rounded-3xl section__container">
-        <span className="text-center font-semibold">
-          Consulta el estado de tu soporte mediante esta herramienta
-        </span>
         <Outlet />
       </section>
       <footer className="text-xs text-center pt-12">

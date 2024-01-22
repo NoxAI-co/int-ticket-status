@@ -19,6 +19,9 @@ const SearchTicket = () => {
 
   return (
     <>
+      <span className="text-center font-semibold">
+        Consulta el estado de tu soporte mediante esta herramienta
+      </span>
       {error && <Alert message={error} />}
       <input
         className="flex w-full rounded-lg bg-gray-200 px-3 py-3 text-sm outline-none transition-colors hover:bg-gray-300 focus:bg-gray-300"

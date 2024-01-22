@@ -1,5 +1,6 @@
 import { useNavigate, useParams } from "react-router-dom";
 import { useEffect, useState } from "react";
+import { Link } from "react-router-dom";
 import { FlagIcon } from "@heroicons/react/16/solid";
 import ItemSeguimiento from "../components/ItemSeguimiento";
 import { Ticket, TicketComment, TicketCommentResponse } from "../types/Ticket";
@@ -27,6 +28,25 @@ const ViewTicket = () => {
   }, [id, navigate]);
   return (
     <article id={"ticket-" + id} className="p-1 flex flex-col gap-4">
+      <Link to="/" className="button-secondary">
+        <span>Volver</span>
+        <svg xmlns="http://www.w3.org/2000/svg" width="12" height="12">
+          <path
+            d="M 1 6 L 11 6"
+            fill="transparent"
+            stroke-width="1.5"
+            stroke="currentColor"
+            stroke-linecap="round"
+          ></path>
+          <path
+            d="M 7 10 L 11 6 L 7 2"
+            fill="transparent"
+            stroke-width="1.5"
+            stroke="currentColor"
+            stroke-linecap="round"
+          ></path>
+        </svg>
+      </Link>
       <header className="flex flex-col">
         <p className="text-sm text-neutral-500">#{id}</p>
         <h1
@@ -53,13 +73,13 @@ const ViewTicket = () => {
       <hr className="h-0.5 bg-gradient-to-r from-tertiarys to-transparent border-none" />
       <div className="flex flex-col gap-2">
         <h2 className="text-lg font-bold">Descripción</h2>
-        <p className="text-sm text-prett">
-          {ticket?.description}
-        </p>
+        <p className="text-sm text-prett">{ticket?.description}</p>
       </div>
       <hr className="h-0.5 bg-gradient-to-r from-transparent via-stone-300 to-transparent border-none" />
       <article className="max-h-[28vh] overflow-auto">
-        <h2 className="text-lg font-bold mb-8">Seguimiento</h2>
+        <h2 className="text-lg font-bold mb-2 bg-white rounded-full w-fit">
+          Seguimiento
+        </h2>
         <ItemSeguimiento
           created={true}
           fecha={ticket ? ticket.date_created : 0}
