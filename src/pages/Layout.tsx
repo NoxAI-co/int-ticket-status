@@ -8,7 +8,12 @@ const Layout = () => {
           Ticket Status
         </h1>
       </header>
-      <section className="max-w-7xl flex flex-col gap-8 bg-stone-100 p-8 rounded-lg">
+      <img
+          src="/public/images/gestoru-logo.webp"
+          alt="Ticket Status"
+          className="w-20 mx-auto my-4 rounded-[20px]"
+        />
+      <section className="max-w-7xl flex flex-col gap-8 bg-stone-100 gap-5 p-8 rounded-3xl">
         <span className="text-center">
           Consulta el estado de tu soporte mediante esta herramienta.
         </span>
