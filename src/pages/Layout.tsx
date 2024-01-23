@@ -7,7 +7,7 @@ const Layout = () => {
       <img
         src="/images/asset-2.png"
         alt="Triangulo"
-        className="absolute top-[21%] md:left-[33%] left-4 w-[26px]"
+        className="absolute top-[21%] md:left-[33%] left-4 w-[26px] z-[-1]"
       />
       <img
         src="/images/asset-1.png"

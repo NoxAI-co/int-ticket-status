@@ -22,7 +22,6 @@ main {
   align-items: center;
   gap: 4px;
   color: #fff;
-  margin: 0 0 1rem 0;
   background: linear-gradient(182deg, #1b3354 31.03%, #001128 99.96%);
   width: fit-content;
   font-size: 15px;
