@@ -13,28 +13,26 @@ const SearchTicket = () => {
       setError("El radicado no puede estar vacio");
       return;
     }
-    
-    navigate(`/ticket/${radicado.value}`);
 
+    navigate(`/ticket/${radicado.value}`);
   };
 
   return (
     <>
+      <span className="text-center font-semibold">
+        Consulta el estado de tu soporte mediante esta herramienta
+      </span>
       {error && <Alert message={error} />}
-      <label>
-        Radicado
-        <input
-          className=" bg-neutral-600 px-4 w-full py-2 rounded-md placeholder:text-neutral-400 focus:outline-none"
-          placeholder="Numero de radicado"
-          type="text"
-          name="id-radicado"
-          id="id-radicado"
-        />
-      </label>
+      <input
+        className="flex w-full rounded-lg bg-gray-200 px-3 py-3 text-sm outline-none transition-colors hover:bg-gray-300 focus:bg-gray-300"
+        placeholder="Numero de radicado"
+        type="text"
+        name="id-radicado"
+        id="id-radicado"
+      />
       <button
         onClick={consultarTicket}
-        className="inline-flex text-blue-100 items-center w-full justify-center text-md gap-2 py-2 bg-emerald-600 rounded-md 
-      hover:bg-emerald-700 transition-colors duration-75"
+        className="inline-flex text-[#16362b] font-semibold items-center w-full justify-center text-md gap-2 py-2 bg-gradient-linear rounded-lg border border-[#60c2a0] transition-colors duration-75 hover:opacity-80 appearance-none scale-100 transition-transform active:scale-[0.98]"
       >
         <IconSearch />
         Consultar

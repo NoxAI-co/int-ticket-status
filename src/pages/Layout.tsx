@@ -1,27 +1,40 @@
 import { Outlet } from "react-router-dom";
-import { HomeIcon } from "@heroicons/react/24/outline";
-import { NavLink } from "react-router-dom";
+import { Toaster } from "sonner";
 
 const Layout = () => {
   return (
     <>
-      <header className="inline-flex px-5 rounded-b-md justify-beetwen items-center mx-2 py-5 bg-neutral-800">
-          <NavLink to="/" className="text-neutral-400">
-            <HomeIcon className="h-7" />
-          </NavLink>
-          <h1 className="inline-flex gap-2 w-full items-center justify-center text-2xl font-bold tracking-wide">
-            Ticket Status
-          </h1>
-        
+      <img
+        src="/images/asset-2.png"
+        alt="Triangulo"
+        className="absolute top-[21%] md:left-[33%] left-4 w-[26px] z-[-1]"
+      />
+      <img
+        src="/images/asset-1.png"
+        alt="Mancha"
+        className="absolute bottom-0 md:bottom-20 right-0 md:left-36 w-[100px] md:w-[140px] blur-md"
+      />
+      <img
+        src="/images/asset-2.png"
+        alt="Triangulo"
+        className="absolute top-20 right-40 z-[-1]"
+      />
+      <Toaster closeButton={true} richColors visibleToasts={2} />
+      <img
+        src="/images/gestoru-logo.webp"
+        alt="Logo"
+        className="w-16 rounded-[20px] mx-auto"
+      />
+      <header>
+        <h1 className="inline-flex gap-2 w-full items-center justify-center text-2xl font-bold tracking-wide my-4">
+          Ticket Status
+        </h1>
       </header>
-      <main className=" bg-neutral-800 mx-2 rounded-md px-6 py-4 flex flex-col gap-4">
-      <span className="text-neutral-400 text-center">
-          Consulta el estado de tu soporte mediante esta herramienta.
-        </span>
+      <section className="max-w-screen-md w-screen md:w-[768px] flex flex-col gap-8 bg-white p-8 rounded-3xl section__container">
         <Outlet />
-      </main>
-      <footer className="text-xs px-4 text-neutral-400">
-        Una herramienta de gestoru software.
+      </section>
+      <footer className="text-xs text-center pt-12">
+        Una herramienta de Gestoru Software.
       </footer>
     </>
   );
