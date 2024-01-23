@@ -57,6 +57,7 @@ const ViewTicket = () => {
         </ContentLoader>
       ) : (
         <>
+          <section className="slide-entry">
           <Link to="/" className="button-secondary">
             <span>Volver</span>
             <svg xmlns="http://www.w3.org/2000/svg" width="12" height="12">
@@ -126,6 +127,7 @@ const ViewTicket = () => {
               <></>
             )}
           </article>
+          </section>
         </>
       )}
     </article>

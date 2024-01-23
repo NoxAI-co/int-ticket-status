@@ -4,7 +4,7 @@ import { Toaster } from "sonner";
 const Layout = () => {
   return (
     <>
-    <Toaster closeButton={true} richColors visibleToasts={1} />
+    <Toaster closeButton={true} richColors visibleToasts={2} />
       <img
         src="/images/gestoru-logo.webp"
         alt="Ticket Status"
@@ -15,7 +15,7 @@ const Layout = () => {
           Ticket Status
         </h1>
       </header>
-      <section className="max-w-7xl flex flex-col gap-8 bg-white p-8 rounded-3xl section__container">
+      <section className="max-w-screen-md min-w-96 flex flex-col gap-8 bg-white p-8 rounded-3xl section__container">
         <Outlet />
       </section>
       <footer className="text-xs text-center pt-12">
