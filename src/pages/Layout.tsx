@@ -4,10 +4,25 @@ import { Toaster } from "sonner";
 const Layout = () => {
   return (
     <>
-    <Toaster closeButton={true} richColors visibleToasts={2} />
+      <img
+        src="/images/asset-2.png"
+        alt="Triangulo"
+        className="absolute top-[21%] md:left-[33%] left-4 w-[26px]"
+      />
+      <img
+        src="/images/asset-1.png"
+        alt="Mancha"
+        className="absolute bottom-0 md:bottom-20 right-0 md:left-36 w-[100px] md:w-[140px] blur-md"
+      />
+      <img
+        src="/images/asset-2.png"
+        alt="Triangulo"
+        className="absolute top-20 right-40 z-[-1]"
+      />
+      <Toaster closeButton={true} richColors visibleToasts={2} />
       <img
         src="/images/gestoru-logo.webp"
-        alt="Ticket Status"
+        alt="Logo"
         className="w-16 rounded-[20px] mx-auto"
       />
       <header>
