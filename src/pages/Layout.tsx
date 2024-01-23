@@ -6,7 +6,7 @@ const Layout = () => {
     <>
     <Toaster closeButton={true} richColors visibleToasts={1} />
       <img
-        src="/public/images/gestoru-logo.webp"
+        src="/images/gestoru-logo.webp"
         alt="Ticket Status"
         className="w-16 rounded-[20px] mx-auto"
       />
