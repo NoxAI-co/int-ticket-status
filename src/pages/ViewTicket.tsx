@@ -19,6 +19,7 @@ const ViewTicket = () => {
     if (!id) return;
     fetchTicket(id)
       .then((ticket) => {
+        console.log(ticket);
         SetTicket(ticket);
         fetchTicketComments(id).then((comments) => {
           const commentsSorted = comments.comments.reverse();
@@ -67,16 +68,16 @@ const ViewTicket = () => {
                   <path
                     d="M 1 6 L 11 6"
                     fill="transparent"
-                    stroke-width="1.5"
+                    strokeWidth="1.5"
                     stroke="currentColor"
-                    stroke-linecap="round"
+                    strokeLinecap="round"
                   ></path>
                   <path
                     d="M 7 10 L 11 6 L 7 2"
                     fill="transparent"
-                    stroke-width="1.5"
+                    strokeWidth="1.5"
                     stroke="currentColor"
-                    stroke-linecap="round"
+                    strokeLinecap="round"
                   ></path>
                 </svg>
               </Link>
@@ -102,9 +103,9 @@ const ViewTicket = () => {
               </div>
 
               <p
-                className="text-white text-xs inline-flex gap-1 items-center capitalize py-1 px-4 border border-secondary/30 rounded-full font-medium"
+                className="text-white text-xs inline-flex gap-1 items-center capitalize py-1 px-4 rounded-full font-medium"
                 style={{
-                  background: ticket?.status.color,
+                  background: ticket?.priority.color,
                 }}
               >
                 <FlagIcon className="w-min h-3" />
