@@ -1,6 +1,5 @@
 import { Outlet } from "react-router-dom";
 import { Toaster } from "sonner";
-import { SpeedInsights } from "@vercel/speed-insights/next"
 
 const Layout = () => {
   return (
@@ -37,7 +36,6 @@ const Layout = () => {
       <footer className="text-xs text-center pt-12">
         Una herramienta de Gestoru Software.
       </footer>
-      <SpeedInsights />
 
     </>
   );
