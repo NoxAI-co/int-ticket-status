@@ -1,6 +1,6 @@
 import { IconSearch } from "@tabler/icons-react";
 import Alert from "../components/Alert";
-import { useState } from "react";
+import { KeyboardEvent, useState } from "react";
 import { useNavigate } from "react-router-dom";
 
 const SearchTicket = () => {
@@ -17,6 +17,12 @@ const SearchTicket = () => {
     navigate(`/ticket/${radicado.value}`);
   };
 
+  const _handleKeyDown = (e: KeyboardEvent<HTMLInputElement | HTMLTextAreaElement>) => {
+    if (!e) return;
+    if (e.key === "Enter") {
+      consultarTicket();
+    }
+  };
   return (
     <>
       <span className="text-center font-semibold">
@@ -27,6 +33,7 @@ const SearchTicket = () => {
         className="flex w-full rounded-lg bg-gray-200 px-3 py-3 text-sm outline-none transition-colors hover:bg-gray-300 focus:bg-gray-300"
         placeholder="Numero de radicado"
         type="text"
+        onKeyDown={_handleKeyDown}
         name="id-radicado"
         id="id-radicado"
       />
