@@ -17,7 +17,7 @@ const SearchTicket = () => {
     navigate(`/ticket/${radicado.value}`);
   };
 
-  const _handleKeyDown = (e) => {
+  const _handleKeyDown = (e: KeyboardEvent) => {
     if (e.key === "Enter") {
       consultarTicket();
     }
