@@ -17,6 +17,11 @@ const SearchTicket = () => {
     navigate(`/ticket/${radicado.value}`);
   };
 
+  const _handleKeyDown = (e) => {
+    if (e.key === "Enter") {
+      consultarTicket();
+    }
+  };
   return (
     <>
       <span className="text-center font-semibold">
@@ -32,6 +37,7 @@ const SearchTicket = () => {
       />
       <button
         onClick={consultarTicket}
+        onKeyDown={_handleKeyDown}
         className="inline-flex text-[#16362b] font-semibold items-center w-full justify-center text-md gap-2 py-2 bg-gradient-linear rounded-lg border border-[#60c2a0] transition-colors duration-75 hover:opacity-80 appearance-none scale-100 transition-transform active:scale-[0.98]"
       >
         <IconSearch />
