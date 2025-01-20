@@ -119,7 +119,6 @@ const ViewTicket = () => {
             <hr className="h-0.5 bg-gradient-to-r from-transparent via-stone-300 my-3.5 to-transparent border-none" />
             <article className="max-h-[28vh] overflow-auto">
               <h2 className="text-lg font-bold mb-2">Seguimiento</h2>
-
               {comments ? (
                 comments
                   .slice()
