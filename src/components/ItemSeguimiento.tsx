@@ -17,13 +17,8 @@ const ItemSeguimiento = ({
       }`}
       {...rest}
     >
-      <header className="text-md grid">
-        <span className="text-md capitalize">
-          {new Date(Number(fecha)).toLocaleDateString("es-ES", {
-            weekday: "long",
-          })}
-        </span>
-        <span className="text-xl font-bold">
+      <header className="text-md font-bold items-center flex">
+        <span>
           {new Date(Number(fecha))
             .toLocaleDateString("es-ES", {
               year: "numeric",
@@ -32,14 +27,14 @@ const ItemSeguimiento = ({
             })
             .replace(".", ",")}
         </span>
+        <span className="mx-2 font-normal text-xs">
+          {new Date(Number(fecha)).toLocaleTimeString("es-ES", {
+            hour: "numeric",
+            minute: "numeric",
+          })}
+        </span>
       </header>
-      <span className="mt-12">
-        {new Date(Number(fecha)).toLocaleTimeString("es-ES", {
-          hour: "numeric",
-          minute: "numeric",
-        })}
-      </span>
-      <p className="text-md mt-2">{descripcion}</p>
+      <p className="text-sm mt-2">{descripcion}</p>
     </article>
   );
 };

@@ -95,21 +95,21 @@ const ViewTicket = () => {
                 <h1
                   className={"text-lg md:text-2xl font-bold "}
                   style={{
-                    color: ticket?.status.color,
+                    color: ticket?.status?.color || "black",
                   }}
                 >
-                  {ticket?.status.status.toUpperCase()}
+                  {ticket?.status.status.toUpperCase() || "UNKNOWN STATUS"}
                 </h1>
               </div>
 
               <p
                 className="text-white text-xs inline-flex gap-1 items-center capitalize py-1 px-4 rounded-full font-medium"
                 style={{
-                  background: ticket?.priority.color,
+                  background: ticket?.priority?.color || "black",
                 }}
               >
                 <FlagIcon className="w-min h-3" />
-                {ticket?.priority.priority}
+                {ticket?.priority?.priority}
               </p>
             </header>
             <div className="flex flex-col gap-2">
@@ -119,19 +119,18 @@ const ViewTicket = () => {
             <hr className="h-0.5 bg-gradient-to-r from-transparent via-stone-300 my-3.5 to-transparent border-none" />
             <article className="max-h-[28vh] overflow-auto">
               <h2 className="text-lg font-bold mb-2">Seguimiento</h2>
-              <ItemSeguimiento
-                created={true}
-                fecha={ticket ? ticket.date_created : 0}
-                descripcion="El ticket fue creado"
-              />
+
               {comments ? (
-                comments.map((comment) => (
-                  <ItemSeguimiento
-                    key={comment.id}
-                    fecha={comment.date}
-                    descripcion={comment.comment_text}
-                  />
-                ))
+                comments
+                  .slice()
+                  .reverse()
+                  .map((comment) => (
+                    <ItemSeguimiento
+                      key={comment.id}
+                      fecha={comment.date}
+                      descripcion={comment.comment_text}
+                    />
+                  ))
               ) : (
                 <></>
               )}
