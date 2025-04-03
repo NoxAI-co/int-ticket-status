@@ -10,6 +10,7 @@ import {
   TooltipTrigger,
 } from "./ui/tooltip";
 import toast from "react-hot-toast";
+import Component12 from "./comp-406";
 
 interface Props {
   taskData: ClickUpTask;
@@ -266,34 +267,53 @@ export const TaskDetail = ({ taskData, comments, searchTaskId }: Props) => {
                       Asignado/s
                     </h2>
                   </div>
-                  <ul className="space-y-3">
-                    {taskData.assignees.map((assignee, index) => (
-                      <motion.li
-                        key={assignee.id}
-                        initial={{ opacity: 0, x: 10 }}
-                        animate={{ opacity: 1, x: 0 }}
-                        transition={{ duration: 0.2, delay: 0.1 * index }}
-                        className="flex items-center gap-3 p-3 rounded-lg bg-gray-50/80 dark:bg-neutral-700/80 border border-neutral-100 dark:border-neutral-600"
-                      >
-                        {assignee.profilePicture ? (
-                          <div className="rounded-full overflow-hidden border-2 border-white dark:border-neutral-700 shadow-sm">
-                            <img
-                              src={assignee.profilePicture}
-                              alt={assignee.username}
-                              className="w-8 h-8 object-cover"
-                            />
-                          </div>
-                        ) : (
-                          <div className="w-8 h-8 rounded-full bg-gradient-to-br from-amber-400 to-orange-500 text-white flex items-center justify-center shadow-sm border-2 border-white dark:border-neutral-700">
-                            {assignee.username.charAt(0).toUpperCase()}
-                          </div>
-                        )}
-                        <span className="text-sm font-medium dark:text-gray-200">
-                          {assignee.username}
-                        </span>
-                      </motion.li>
-                    ))}
-                  </ul>
+
+                  <motion.div
+                    className="flex -space-x-[0.9rem]"
+                    whileHover={{
+                      gap: "1rem",
+                      transition: {
+                        type: "spring",
+                        stiffness: 300,
+                        damping: 20,
+                      },
+                    }}
+                  >
+                    {taskData.assignees.map((assignee, index) =>
+                      assignee.profilePicture ? (
+                        <motion.img
+                          key={index}
+                          className="ring-background rounded-full ring-2"
+                          src={assignee.profilePicture}
+                          width={48}
+                          title={assignee.username}
+                          height={48}
+                          alt={assignee.username}
+                          initial={{ scale: 1 }}
+                          whileHover={{ scale: 1.1 }}
+                          transition={{
+                            type: "spring",
+                            stiffness: 400,
+                            damping: 17,
+                          }}
+                        />
+                      ) : (
+                        <motion.div
+                          key={index}
+                          whileHover={{ scale: 1.1 }}
+                          transition={{
+                            type: "spring",
+                            stiffness: 400,
+                            damping: 17,
+                          }}
+                          title={assignee.username}
+                          className="ring-background rounded-full ring-2 w-12 h-12 bg-gradient-to-br from-amber-400 to-amber-500 flex items-center justify-center text-white text-lg font-medium"
+                        >
+                          {assignee.username.charAt(0).toUpperCase()}
+                        </motion.div>
+                      )
+                    )}
+                  </motion.div>
                 </motion.div>
               )}
             </div>
