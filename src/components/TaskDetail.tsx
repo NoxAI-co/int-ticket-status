@@ -2,10 +2,8 @@ import type { ClickUpComment, ClickUpTask } from "@/types/ClickUpTask";
 import {
   TicketIcon,
   ClipboardCopy,
-  Calendar,
   Mail,
   Building2,
-  User2,
 } from "lucide-react";
 import { Button } from "./ui/button";
 import { Input } from "./ui/input";
