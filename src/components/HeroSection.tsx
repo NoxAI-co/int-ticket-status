@@ -1,6 +1,7 @@
 import { Button } from "@/components/ui/button";
 import { Input } from "@/components/ui/input";
 import { SearchIcon } from "lucide-react";
+import { ModeToggle } from "./mode-toggle";
 
 interface HeroSectionProps {
   taskId: string;
@@ -8,7 +9,11 @@ interface HeroSectionProps {
   handleSearch: () => void;
 }
 
-export default function HeroSection({ taskId, setTaskId, handleSearch  }: HeroSectionProps) {
+export default function HeroSection({
+  taskId,
+  setTaskId,
+  handleSearch,
+}: HeroSectionProps) {
   return (
     <div className="flex min-h-screen flex-col">
       <header className="border-b bg-background px-4 py-3">
@@ -42,8 +47,12 @@ export default function HeroSection({ taskId, setTaskId, handleSearch  }: HeroSe
               href="https://gestoru.com/empresa/"
               className="text-sm font-medium text-muted-foreground hover:text-foreground"
             >
-              Gestoru
+              Gestoru Software
             </a>
+          </nav>
+
+          <nav className="flex gap-6">
+            <ModeToggle />
           </nav>
         </div>
       </header>
@@ -71,7 +80,9 @@ export default function HeroSection({ taskId, setTaskId, handleSearch  }: HeroSe
                     onChange={(e) => setTaskId(e.target.value)}
                   />
                 </div>
-                <Button type="button" onClick={handleSearch}>Consultar</Button>
+                <Button type="button" onClick={handleSearch}>
+                  Consultar
+                </Button>
               </div>
             </div>
           </div>
