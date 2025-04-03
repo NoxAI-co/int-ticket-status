@@ -187,22 +187,21 @@ export const TaskDetail = ({ taskData, comments, searchTaskId }: Props) => {
                 </div>
               </motion.div>
 
-              {comments && comments.length > 0 && (
-                <motion.div
-                  initial={{ opacity: 0, y: 10 }}
-                  animate={{ opacity: 1, y: 0 }}
-                  transition={{ duration: 0.3, delay: 0.3 }}
-                  className="bg-white/70 dark:bg-neutral-800/70 backdrop-blur-sm rounded-xl p-6 shadow-sm border border-neutral-100 dark:border-neutral-700"
-                >
-                  <div className="flex items-center gap-2 mb-4">
-                    <div className="h-5 w-1 rounded-full bg-green-500"></div>
-                    <h2 className="text-lg font-semibold text-gray-900 dark:text-white">
-                      Comentarios
-                    </h2>
-                  </div>
+              <motion.div
+                initial={{ opacity: 0, y: 10 }}
+                animate={{ opacity: 1, y: 0 }}
+                transition={{ duration: 0.3, delay: 0.3 }}
+                className="bg-white/70 dark:bg-neutral-800/70 backdrop-blur-sm rounded-xl p-6 shadow-sm border border-neutral-100 dark:border-neutral-700"
+              >
+                <div className="flex items-center gap-2 mb-4">
+                  <div className="h-5 w-1 rounded-full bg-green-500"></div>
+                  <h2 className="text-lg font-semibold text-gray-900 dark:text-white">
+                    Comentarios
+                  </h2>
+                </div>
 
-                  <CreateComment taskId={searchTaskId} />
-
+                <CreateComment taskId={searchTaskId} />
+                {comments && comments.length > 0 && (
                   <ul className="space-y-5">
                     {comments.map((comment, index) => (
                       <motion.li
@@ -250,8 +249,8 @@ export const TaskDetail = ({ taskData, comments, searchTaskId }: Props) => {
                       </motion.li>
                     ))}
                   </ul>
-                </motion.div>
-              )}
+                )}
+              </motion.div>
             </div>
 
             <div className="space-y-6">
