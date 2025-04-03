@@ -77,7 +77,7 @@ export default function HeroSection({
                     type="text"
                     autoFocus
                     placeholder="Escribe tu codigo (e.j., 87knya)"
-                    className="pl-8 bg-white"
+                    className="pl-8 dark:bg-neutral-800 bg-white"
                     value={taskId}
                     onChange={(e) => setTaskId(e.target.value)}
                   />

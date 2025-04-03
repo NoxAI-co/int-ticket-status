@@ -20,7 +20,6 @@ function App() {
   const {
     data: taskData,
     isLoading,
-    isError,
   } = clickUpTask.useTaskDetails(searchTaskId);
 
   const { data: comments } = clickUpTask.useTaskComments(searchTaskId);

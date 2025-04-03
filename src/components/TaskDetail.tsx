@@ -19,16 +19,16 @@ interface Props {
 
 export const TaskDetail = ({ taskData, comments, searchTaskId }: Props) => {
   return (
-    <div className="p-6 to-white h-full">
+    <div className="p-6 to-white dark:bg-neutral-900 h-full">
       <motion.div
         initial={{ opacity: 0, y: 20 }}
         animate={{ opacity: 1, y: 0 }}
         transition={{ duration: 0.5 }}
       >
-        <div className="p-2 border-b border-gray-100">
+        <div className="p-2 border-b border-neutral-100 dark:border-neutral-800">
           <div className="flex flex-col md:flex-row justify-between items-start gap-4">
             <div className="space-y-2">
-              <div className="flex items-center gap-2 text-sm text-gray-500 mb-1">
+              <div className="flex items-center gap-2 text-sm text-gray-500 dark:text-gray-400 mb-1">
                 <span className="font-mono">#{searchTaskId}</span>
                 {/* <span className="inline-block h-1 w-1 rounded-full bg-gray-300"></span>
                 <span>{new Date().toLocaleDateString()}</span> */}
@@ -36,7 +36,7 @@ export const TaskDetail = ({ taskData, comments, searchTaskId }: Props) => {
               <TooltipProvider>
                 <Tooltip>
                   <TooltipTrigger asChild>
-                    <h1 className="text-2xl font-bold text-gray-900 max-w-[250px] md:max-w-4xl text-nowrap whitespace-nowrap overflow-hidden text-ellipsis ">
+                    <h1 className="text-2xl font-bold text-gray-900 dark:text-white max-w-[250px] md:max-w-4xl text-nowrap whitespace-nowrap overflow-hidden text-ellipsis ">
                       {taskData.name}
                     </h1>
                   </TooltipTrigger>
@@ -69,21 +69,21 @@ export const TaskDetail = ({ taskData, comments, searchTaskId }: Props) => {
                 initial={{ opacity: 0, y: 10 }}
                 animate={{ opacity: 1, y: 0 }}
                 transition={{ duration: 0.3, delay: 0.1 }}
-                className="bg-white/70 backdrop-blur-sm rounded-xl p-6 shadow-sm border border-gray-100"
+                className="bg-white/70 dark:bg-neutral-800/70 backdrop-blur-sm rounded-xl p-6 shadow-sm border border-neutral-100 dark:border-neutral-700"
               >
                 <div className="flex items-center gap-2 mb-3">
                   <div className="h-5 w-1 rounded-full bg-indigo-500"></div>
-                  <h2 className="text-lg font-semibold text-gray-900">
+                  <h2 className="text-lg font-semibold text-gray-900 dark:text-white">
                     Descripción
                   </h2>
                 </div>
                 <div className="prose max-w-none">
                   {taskData.description ? (
-                    <p className="whitespace-pre-wrap max-h-80 overflow-y-auto text-gray-700 leading-relaxed">
+                    <p className="whitespace-pre-wrap max-h-80 overflow-y-auto text-gray-700 dark:text-gray-300 leading-relaxed">
                       {taskData.description}
                     </p>
                   ) : (
-                    <p className="text-gray-400 italic">
+                    <p className="text-gray-400 dark:text-gray-500 italic">
                       Sin descripción disponible.
                     </p>
                   )}
@@ -94,11 +94,11 @@ export const TaskDetail = ({ taskData, comments, searchTaskId }: Props) => {
                 initial={{ opacity: 0, y: 10 }}
                 animate={{ opacity: 1, y: 0 }}
                 transition={{ duration: 0.3, delay: 0.2 }}
-                className="bg-white/70 backdrop-blur-sm rounded-xl p-6 shadow-sm border border-gray-100"
+                className="bg-white/70 dark:bg-neutral-800/70 backdrop-blur-sm rounded-xl p-6 shadow-sm border border-neutral-100 dark:border-neutral-700"
               >
                 <div className="flex items-center gap-2 mb-3">
                   <div className="h-5 w-1 rounded-full bg-blue-500"></div>
-                  <h2 className="text-lg font-semibold text-gray-900">
+                  <h2 className="text-lg font-semibold text-gray-900 dark:text-white">
                     URL del soporte
                   </h2>
                 </div>
@@ -106,35 +106,29 @@ export const TaskDetail = ({ taskData, comments, searchTaskId }: Props) => {
                   <Input
                     type="text"
                     value={`${window.location.origin}/?ticket=${searchTaskId}`}
-                    className="flex-1 bg-white/80 border-gray-200 font-mono text-sm"
+                    className="flex-1 bg-white/80 dark:bg-neutral-700/80 border-neutral-200 dark:border-neutral-600 font-mono text-sm dark:text-gray-200"
                     readOnly
                   />
-                  <motion.div
-                    whileHover={{ scale: 1.05 }}
-                    whileTap={{ scale: 0.95 }}
+                  <Button
+                    onClick={() => {
+                      navigator.clipboard.writeText(
+                        `${window.location.origin}/?ticket=${searchTaskId}`
+                      );
+                      toast("Copiado!", {
+                        icon: "✔️",
+                        position: "bottom-center",
+                        style: {
+                          borderRadius: "10px",
+                          background: "#333",
+                          color: "#fff",
+                        },
+                      });
+                    }}
+                    className="dark:bg-emerald-500/10 border-[1px] dark:border-emerald-500 dark:text-emerald-300 bg-emerald-500 hover:bg-emerald-600 text-white flex items-center gap-2 hover:opacity-70 cursor-pointer"
                   >
-                    <Button
-                      onClick={() => {
-                        navigator.clipboard.writeText(
-                          `${window.location.origin}/?ticket=${searchTaskId}`
-                        );
-                        toast("Copiado!", {
-                          icon: "✔️",
-                          position: "bottom-center",
-                          style: {
-                            borderRadius: "10px",
-                            background: "#333",
-                            fontWeight: "bold",
-                            color: "#fff",
-                          },
-                        });
-                      }}
-                      className="bg-emerald-500 hover:bg-emerald-600 text-white flex items-center gap-2"
-                    >
-                      <ClipboardCopy className="h-4 w-4" />
-                      <span>Copiar</span>
-                    </Button>
-                  </motion.div>
+                    <ClipboardCopy className="h-4 w-4" />
+                    <span>Copiar</span>
+                  </Button>
                 </div>
               </motion.div>
 
@@ -143,11 +137,11 @@ export const TaskDetail = ({ taskData, comments, searchTaskId }: Props) => {
                   initial={{ opacity: 0, y: 10 }}
                   animate={{ opacity: 1, y: 0 }}
                   transition={{ duration: 0.3, delay: 0.3 }}
-                  className="bg-white/70 backdrop-blur-sm rounded-xl p-6 shadow-sm border border-gray-100"
+                  className="bg-white/70 dark:bg-neutral-800/70 backdrop-blur-sm rounded-xl p-6 shadow-sm border border-neutral-100 dark:border-neutral-700"
                 >
                   <div className="flex items-center gap-2 mb-4">
                     <div className="h-5 w-1 rounded-full bg-green-500"></div>
-                    <h2 className="text-lg font-semibold text-gray-900">
+                    <h2 className="text-lg font-semibold text-gray-900 dark:text-white">
                       Comentarios
                     </h2>
                   </div>
@@ -159,12 +153,12 @@ export const TaskDetail = ({ taskData, comments, searchTaskId }: Props) => {
                         initial={{ opacity: 0, y: 10 }}
                         animate={{ opacity: 1, y: 0 }}
                         transition={{ duration: 0.2, delay: 0.1 * index }}
-                        className="border-b border-gray-100 pb-5 last:border-0 last:pb-0"
+                        className="border-b border-neutral-100 dark:border-neutral-700 pb-5 last:border-0 last:pb-0"
                       >
                         <div className="flex items-start gap-3">
                           <div className="flex-shrink-0">
                             {comment.user.profilePicture ? (
-                              <div className="rounded-full overflow-hidden border-2 border-white shadow-sm">
+                              <div className="rounded-full overflow-hidden border-2 border-white dark:border-neutral-700 shadow-sm">
                                 <img
                                   src={comment.user.profilePicture}
                                   alt={comment.user.username}
@@ -172,18 +166,18 @@ export const TaskDetail = ({ taskData, comments, searchTaskId }: Props) => {
                                 />
                               </div>
                             ) : (
-                              <div className="w-10 h-10 rounded-full bg-gradient-to-br from-blue-400 to-indigo-500 text-white flex items-center justify-center shadow-sm border-2 border-white">
+                              <div className="w-10 h-10 rounded-full bg-gradient-to-br from-blue-400 to-indigo-500 text-white flex items-center justify-center shadow-sm border-2 border-white dark:border-neutral-700">
                                 {comment.user.username.charAt(0).toUpperCase()}
                               </div>
                             )}
                           </div>
                           <div className="flex-1">
                             <div className="flex items-center mb-1">
-                              <h3 className="font-medium text-gray-900">
+                              <h3 className="font-medium text-gray-900 dark:text-white">
                                 {comment.user.username}
                               </h3>
                             </div>
-                            <div className="text-gray-700 text-sm leading-relaxed">
+                            <div className="text-gray-700 dark:text-gray-300 text-sm leading-relaxed">
                               {
                                 typeof comment.comment === "string"
                                   ? comment.comment
@@ -208,34 +202,34 @@ export const TaskDetail = ({ taskData, comments, searchTaskId }: Props) => {
                 initial={{ opacity: 0, y: 10 }}
                 animate={{ opacity: 1, y: 0 }}
                 transition={{ duration: 0.3, delay: 0.1 }}
-                className="bg-white/70 backdrop-blur-sm rounded-xl p-6 shadow-sm border border-gray-100"
+                className="bg-white/70 dark:bg-neutral-800/70 backdrop-blur-sm rounded-xl p-6 shadow-sm border border-neutral-100 dark:border-neutral-700"
               >
                 <div className="flex items-center gap-2 mb-4">
                   <div className="h-5 w-1 rounded-full bg-purple-500"></div>
-                  <h2 className="text-lg font-semibold text-gray-900">
+                  <h2 className="text-lg font-semibold text-gray-900 dark:text-white">
                     Detalles
                   </h2>
                 </div>
                 <dl className="space-y-4">
-                  <div className="flex items-center gap-3 p-3 rounded-lg bg-gray-50/80 border border-gray-100">
-                    <TicketIcon className="h-5 w-5 text-gray-500" />
+                  <div className="flex items-center gap-3 p-3 rounded-lg bg-gray-50/80 dark:bg-neutral-700/80 border border-neutral-100 dark:border-neutral-600">
+                    <TicketIcon className="h-5 w-5 text-gray-500 dark:text-gray-400" />
                     <div>
-                      <dt className="text-xs font-medium text-gray-500 uppercase tracking-wide">
+                      <dt className="text-xs font-medium text-gray-500 dark:text-gray-400 uppercase tracking-wide">
                         ID Soporte
                       </dt>
-                      <dd className="font-mono text-sm text-gray-900">
+                      <dd className="font-mono text-sm text-gray-900 dark:text-gray-200">
                         {searchTaskId}
                       </dd>
                     </div>
                   </div>
 
-                  <div className="flex items-center gap-3 p-3 rounded-lg bg-gray-50/80 border border-gray-100">
-                    <Building2 className="h-5 w-5 text-gray-500" />
+                  <div className="flex items-center gap-3 p-3 rounded-lg bg-gray-50/80 dark:bg-neutral-700/80 border border-neutral-100 dark:border-neutral-600">
+                    <Building2 className="h-5 w-5 text-gray-500 dark:text-gray-400" />
                     <div>
-                      <dt className="text-xs font-medium text-gray-500 uppercase tracking-wide">
+                      <dt className="text-xs font-medium text-gray-500 dark:text-gray-400 uppercase tracking-wide">
                         NIT
                       </dt>
-                      <dd className="text-sm text-gray-900">
+                      <dd className="text-sm text-gray-900 dark:text-gray-200">
                         {taskData.custom_fields?.find(
                           (field) => field.name === "NIT"
                         )?.value || "Sin NIT"}
@@ -243,13 +237,13 @@ export const TaskDetail = ({ taskData, comments, searchTaskId }: Props) => {
                     </div>
                   </div>
 
-                  <div className="flex items-center gap-3 p-3 rounded-lg bg-gray-50/80 border border-gray-100">
-                    <Mail className="h-5 w-5 text-gray-500" />
+                  <div className="flex items-center gap-3 p-3 rounded-lg bg-gray-50/80 dark:bg-neutral-700/80 border border-neutral-100 dark:border-neutral-600">
+                    <Mail className="h-5 w-5 text-gray-500 dark:text-gray-400" />
                     <div>
-                      <dt className="text-xs font-medium text-gray-500 uppercase tracking-wide">
+                      <dt className="text-xs font-medium text-gray-500 dark:text-gray-400 uppercase tracking-wide">
                         Email
                       </dt>
-                      <dd className="text-sm text-gray-900 break-all">
+                      <dd className="text-sm text-gray-900 dark:text-gray-200 break-all">
                         {taskData.custom_fields?.find(
                           (field) => field.name === "Mail"
                         )?.value || "Sin email"}
@@ -264,11 +258,11 @@ export const TaskDetail = ({ taskData, comments, searchTaskId }: Props) => {
                   initial={{ opacity: 0, y: 10 }}
                   animate={{ opacity: 1, y: 0 }}
                   transition={{ duration: 0.3, delay: 0.2 }}
-                  className="bg-white/70 backdrop-blur-sm rounded-xl p-6 shadow-sm border border-gray-100"
+                  className="bg-white/70 dark:bg-neutral-800/70 backdrop-blur-sm rounded-xl p-6 shadow-sm border border-neutral-100 dark:border-neutral-700"
                 >
                   <div className="flex items-center gap-2 mb-4">
                     <div className="h-5 w-1 rounded-full bg-amber-500"></div>
-                    <h2 className="text-lg font-semibold text-gray-900">
+                    <h2 className="text-lg font-semibold text-gray-900 dark:text-white">
                       Asignado/s
                     </h2>
                   </div>
@@ -279,10 +273,10 @@ export const TaskDetail = ({ taskData, comments, searchTaskId }: Props) => {
                         initial={{ opacity: 0, x: 10 }}
                         animate={{ opacity: 1, x: 0 }}
                         transition={{ duration: 0.2, delay: 0.1 * index }}
-                        className="flex items-center gap-3 p-3 rounded-lg bg-gray-50/80 border border-gray-100"
+                        className="flex items-center gap-3 p-3 rounded-lg bg-gray-50/80 dark:bg-neutral-700/80 border border-neutral-100 dark:border-neutral-600"
                       >
                         {assignee.profilePicture ? (
-                          <div className="rounded-full overflow-hidden border-2 border-white shadow-sm">
+                          <div className="rounded-full overflow-hidden border-2 border-white dark:border-neutral-700 shadow-sm">
                             <img
                               src={assignee.profilePicture}
                               alt={assignee.username}
@@ -290,11 +284,11 @@ export const TaskDetail = ({ taskData, comments, searchTaskId }: Props) => {
                             />
                           </div>
                         ) : (
-                          <div className="w-8 h-8 rounded-full bg-gradient-to-br from-amber-400 to-orange-500 text-white flex items-center justify-center shadow-sm border-2 border-white">
+                          <div className="w-8 h-8 rounded-full bg-gradient-to-br from-amber-400 to-orange-500 text-white flex items-center justify-center shadow-sm border-2 border-white dark:border-neutral-700">
                             {assignee.username.charAt(0).toUpperCase()}
                           </div>
                         )}
-                        <span className="text-sm font-medium">
+                        <span className="text-sm font-medium dark:text-gray-200">
                           {assignee.username}
                         </span>
                       </motion.li>
