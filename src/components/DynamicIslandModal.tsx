@@ -81,9 +81,9 @@ const DynamicIslandModal = ({
     <AnimatePresence>
       {isOpen && (
         <>
-          {/* Backdrop */}
+
           <motion.div
-            className="fixed inset-0 bg-black/50 z-40"
+            className="fixed inset-0 bg-black/15 z-40"
             initial="closed"
             animate="open"
             exit="closed"
@@ -93,7 +93,7 @@ const DynamicIslandModal = ({
 
           {/* Modal */}
           <motion.div
-            className="fixed top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 bg-white shadow-xl overflow-hidden z-50"
+            className="fixed top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 bg-white/80 backdrop-blur-lg shadow-xl overflow-hidden z-50"
             initial="closed"
             animate="open"
             exit="exit"

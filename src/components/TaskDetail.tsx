@@ -1,5 +1,21 @@
 import type { ClickUpComment, ClickUpTask } from "@/types/ClickUpTask";
-import { TicketIcon } from "lucide-react";
+import {
+  TicketIcon,
+  ClipboardCopy,
+  Calendar,
+  Mail,
+  Building2,
+  User2,
+} from "lucide-react";
+import { Button } from "./ui/button";
+import { Input } from "./ui/input";
+import { motion } from "framer-motion";
+import {
+  Tooltip,
+  TooltipContent,
+  TooltipProvider,
+  TooltipTrigger,
+} from "./ui/tooltip";
 
 interface Props {
   taskData: ClickUpTask;
@@ -9,95 +25,161 @@ interface Props {
 
 export const TaskDetail = ({ taskData, comments, searchTaskId }: Props) => {
   return (
-    <div className="p-6">
-      <div className="bg-white rounded-lg overflow-hidden mb-6">
-        <div className="p-6 border-b">
-          <div className="flex justify-between items-start">
-            <h1 className="text-2xl font-bold max-w-[70%] overflow-hidden text-ellipsis whitespace-nowrap">
-              {taskData.name}
-            </h1>
-            <article className="relative inline-flex items-center gap-2 px-3 py-1 rounded-full text-md font-medium capitalize">
-              {/* <div
-                className="absolute left-0 h-2 w-2 rounded-full flex items-center justify-center"
-                style={{ backgroundColor: taskData.status?.color || "#gray" }}
+    <div className="p-6 to-white h-full">
+      <motion.div
+        initial={{ opacity: 0, y: 20 }}
+        animate={{ opacity: 1, y: 0 }}
+        transition={{ duration: 0.5 }}
+      >
+        <div className="p-2 border-b border-gray-100">
+          <div className="flex flex-col md:flex-row justify-between items-start gap-4">
+            <div className="space-y-2">
+              <div className="flex items-center gap-2 text-sm text-gray-500 mb-1">
+                <span className="font-mono">#{searchTaskId}</span>
+                {/* <span className="inline-block h-1 w-1 rounded-full bg-gray-300"></span>
+                <span>{new Date().toLocaleDateString()}</span> */}
+              </div>
+              <TooltipProvider>
+                <Tooltip>
+                  <TooltipTrigger asChild>
+                    <h1 className="text-2xl font-bold text-gray-900 max-w-4xl text-nowrap whitespace-nowrap overflow-hidden text-ellipsis ">
+                      {taskData.name}
+                    </h1>
+                  </TooltipTrigger>
+                  <TooltipContent>{taskData.name}</TooltipContent>
+                </Tooltip>
+              </TooltipProvider>
+            </div>
+            <div className="flex items-center gap-3">
+              <motion.div
+                whileHover={{ scale: 1.05 }}
+                whileTap={{ scale: 0.95 }}
+                className="flex items-center gap-2 px-4 py-2 rounded-full font-medium capitalize bg-opacity-10"
+                style={{
+                  backgroundColor: `${taskData.status?.color}15` || "#f3f4f6",
+                  color: taskData.status?.color || "#6b7280",
+                  border: `1px solid ${taskData.status?.color}30` || "#e5e7eb",
+                }}
               >
-                <span className="sr-only">Status</span>
-              </div> */}
-              <TicketIcon
-                className={`h-6 w-6`}
-                style={{ color: taskData.status?.color || "#E53E3E" }}
-              />
-              <span>{taskData.status?.status || "No Status"}</span>
-            </article>
+                <TicketIcon className="h-4 w-4" />
+                <span>{taskData.status?.status || "No Status"}</span>
+              </motion.div>
+            </div>
           </div>
         </div>
 
-        <div className="p-6">
-          <div className="grid grid-cols-1 md:grid-cols-3 gap-6">
-            <div className="md:col-span-2">
-              <h2 className="text-lg font-semibold mb-2">Descripción</h2>
-              <div className="prose max-w-none">
-                {taskData.description ? (
-                  <p className="whitespace-pre-wrap max-h-80 overflow-y-auto">
-                    {taskData.description}
-                  </p>
-                ) : (
-                  <p className="text-gray-500 italic">
-                    Sin descripción disponible.
-                  </p>
-                )}
-              </div>
+        <div className="p-2">
+          <div className="grid grid-cols-1 md:grid-cols-3 gap-8">
+            <div className="md:col-span-2 space-y-8">
+              <motion.div
+                initial={{ opacity: 0, y: 10 }}
+                animate={{ opacity: 1, y: 0 }}
+                transition={{ duration: 0.3, delay: 0.1 }}
+                className="bg-white/70 backdrop-blur-sm rounded-xl p-6 shadow-sm border border-gray-100"
+              >
+                <div className="flex items-center gap-2 mb-3">
+                  <div className="h-5 w-1 rounded-full bg-indigo-500"></div>
+                  <h2 className="text-lg font-semibold text-gray-900">
+                    Descripción
+                  </h2>
+                </div>
+                <div className="prose max-w-none">
+                  {taskData.description ? (
+                    <p className="whitespace-pre-wrap max-h-80 overflow-y-auto text-gray-700 leading-relaxed">
+                      {taskData.description}
+                    </p>
+                  ) : (
+                    <p className="text-gray-400 italic">
+                      Sin descripción disponible.
+                    </p>
+                  )}
+                </div>
+              </motion.div>
 
-              <div className="mt-6">
-                <h2 className="text-lg font-semibold mb-2">URL del soporte</h2>
-                <div className="flex items-center">
-                  <input
+              <motion.div
+                initial={{ opacity: 0, y: 10 }}
+                animate={{ opacity: 1, y: 0 }}
+                transition={{ duration: 0.3, delay: 0.2 }}
+                className="bg-white/70 backdrop-blur-sm rounded-xl p-6 shadow-sm border border-gray-100"
+              >
+                <div className="flex items-center gap-2 mb-3">
+                  <div className="h-5 w-1 rounded-full bg-blue-500"></div>
+                  <h2 className="text-lg font-semibold text-gray-900">
+                    URL del soporte
+                  </h2>
+                </div>
+                <div className="flex items-center gap-2">
+                  <Input
                     type="text"
                     value={`${window.location.origin}/?ticket=${searchTaskId}`}
-                    className="flex-1 p-2 border rounded"
+                    className="flex-1 bg-white/80 border-gray-200 font-mono text-sm"
                     readOnly
                   />
-                  <button
-                    onClick={() => {
-                      navigator.clipboard.writeText(
-                        `${window.location.origin}/?ticket=${searchTaskId}`
-                      );
-                    }}
-                    className="ml-2 bg-blue-500 text-white px-4 py-2 rounded hover:bg-blue-600"
+                  <motion.div
+                    whileHover={{ scale: 1.05 }}
+                    whileTap={{ scale: 0.95 }}
                   >
-                    Copy
-                  </button>
+                    <Button
+                      onClick={() => {
+                        navigator.clipboard.writeText(
+                          `${window.location.origin}/?ticket=${searchTaskId}`
+                        );
+                      }}
+                      className="bg-blue-500 hover:bg-blue-600 text-white flex items-center gap-2"
+                    >
+                      <ClipboardCopy className="h-4 w-4" />
+                      <span>Copy</span>
+                    </Button>
+                  </motion.div>
                 </div>
-              </div>
+              </motion.div>
 
               {comments && comments.length > 0 && (
-                <div className="mt-6 min-w-md">
-                  <h2 className="text-lg font-semibold mb-4">Comentarios</h2>
+                <motion.div
+                  initial={{ opacity: 0, y: 10 }}
+                  animate={{ opacity: 1, y: 0 }}
+                  transition={{ duration: 0.3, delay: 0.3 }}
+                  className="bg-white/70 backdrop-blur-sm rounded-xl p-6 shadow-sm border border-gray-100"
+                >
+                  <div className="flex items-center gap-2 mb-4">
+                    <div className="h-5 w-1 rounded-full bg-green-500"></div>
+                    <h2 className="text-lg font-semibold text-gray-900">
+                      Comentarios
+                    </h2>
+                  </div>
 
-                  <ul className="space-y-4">
-                    {comments.map((comment) => (
-                      <li key={comment.id} className="border-b pb-4">
-                        <div className="flex items-start">
-                          <div className="flex-shrink-0 mr-3">
+                  <ul className="space-y-5">
+                    {comments.map((comment, index) => (
+                      <motion.li
+                        key={comment.id}
+                        initial={{ opacity: 0, y: 10 }}
+                        animate={{ opacity: 1, y: 0 }}
+                        transition={{ duration: 0.2, delay: 0.1 * index }}
+                        className="border-b border-gray-100 pb-5 last:border-0 last:pb-0"
+                      >
+                        <div className="flex items-start gap-3">
+                          <div className="flex-shrink-0">
                             {comment.user.profilePicture ? (
-                              <img
-                                src={comment.user.profilePicture}
-                                alt={comment.user.username}
-                                className="w-10 h-10 rounded-full"
-                              />
+                              <div className="rounded-full overflow-hidden border-2 border-white shadow-sm">
+                                <img
+                                  src={comment.user.profilePicture}
+                                  alt={comment.user.username}
+                                  className="w-10 h-10 object-cover"
+                                />
+                              </div>
                             ) : (
-                              <div className="w-10 h-10 rounded-full bg-gray-200 flex items-center justify-center">
+                              <div className="w-10 h-10 rounded-full bg-gradient-to-br from-blue-400 to-indigo-500 text-white flex items-center justify-center shadow-sm border-2 border-white">
                                 {comment.user.username.charAt(0).toUpperCase()}
                               </div>
                             )}
                           </div>
-                          <div>
-                            <div className="flex items-center">
-                              <h3 className="font-medium">
+                          <div className="flex-1">
+                            <div className="flex items-center mb-1">
+                              <h3 className="font-medium text-gray-900">
                                 {comment.user.username}
                               </h3>
                             </div>
-                            <p className="mt-1">
+                            <div className="text-gray-700 text-sm leading-relaxed">
                               {
                                 typeof comment.comment === "string"
                                   ? comment.comment
@@ -107,74 +189,119 @@ export const TaskDetail = ({ taskData, comments, searchTaskId }: Props) => {
                                     ))
                                   : comment.comment_text /* Fallback to plain text version */
                               }
-                            </p>
+                            </div>
                           </div>
                         </div>
-                      </li>
+                      </motion.li>
                     ))}
                   </ul>
-                </div>
+                </motion.div>
               )}
             </div>
 
             <div className="space-y-6">
-              <div className="bg-gray-50 p-4 rounded">
-                <h2 className="text-lg font-semibold mb-2">Detalles</h2>
-                <dl className="space-y-2">
-                  <div>
-                    <dt className="text-sm text-gray-500">ID Soporte</dt>
-                    <dd className="font-mono text-sm">{searchTaskId}</dd>
+              <motion.div
+                initial={{ opacity: 0, y: 10 }}
+                animate={{ opacity: 1, y: 0 }}
+                transition={{ duration: 0.3, delay: 0.1 }}
+                className="bg-white/70 backdrop-blur-sm rounded-xl p-6 shadow-sm border border-gray-100"
+              >
+                <div className="flex items-center gap-2 mb-4">
+                  <div className="h-5 w-1 rounded-full bg-purple-500"></div>
+                  <h2 className="text-lg font-semibold text-gray-900">
+                    Detalles
+                  </h2>
+                </div>
+                <dl className="space-y-4">
+                  <div className="flex items-center gap-3 p-3 rounded-lg bg-gray-50/80 border border-gray-100">
+                    <TicketIcon className="h-5 w-5 text-gray-500" />
+                    <div>
+                      <dt className="text-xs font-medium text-gray-500 uppercase tracking-wide">
+                        ID Soporte
+                      </dt>
+                      <dd className="font-mono text-sm text-gray-900">
+                        {searchTaskId}
+                      </dd>
+                    </div>
                   </div>
 
-                  <div>
-                    <dt className="text-sm text-gray-500">NIT</dt>
-                    <dd>
-                      {
-                        taskData.custom_fields?.find(
+                  <div className="flex items-center gap-3 p-3 rounded-lg bg-gray-50/80 border border-gray-100">
+                    <Building2 className="h-5 w-5 text-gray-500" />
+                    <div>
+                      <dt className="text-xs font-medium text-gray-500 uppercase tracking-wide">
+                        NIT
+                      </dt>
+                      <dd className="text-sm text-gray-900">
+                        {taskData.custom_fields?.find(
                           (field) => field.name === "NIT"
-                        )?.value
-                      }
-                    </dd>
+                        )?.value || "Sin NIT"}
+                      </dd>
+                    </div>
                   </div>
 
-                  <div>
-                    <dt className="text-sm text-gray-500">Email</dt>
-                    <dd>
-                      {taskData.custom_fields?.find(
-                        (field) => field.name === "Mail"
-                      )?.value || "Sin email"}
-                    </dd>
+                  <div className="flex items-center gap-3 p-3 rounded-lg bg-gray-50/80 border border-gray-100">
+                    <Mail className="h-5 w-5 text-gray-500" />
+                    <div>
+                      <dt className="text-xs font-medium text-gray-500 uppercase tracking-wide">
+                        Email
+                      </dt>
+                      <dd className="text-sm text-gray-900 break-all">
+                        {taskData.custom_fields?.find(
+                          (field) => field.name === "Mail"
+                        )?.value || "Sin email"}
+                      </dd>
+                    </div>
                   </div>
                 </dl>
-              </div>
+              </motion.div>
 
               {taskData.assignees && taskData.assignees.length > 0 && (
-                <div className="bg-gray-50 p-4 rounded">
-                  <h2 className="text-lg font-semibold mb-2">Asignado/s</h2>
-                  <ul className="space-y-2">
-                    {taskData.assignees.map((assignee) => (
-                      <li key={assignee.id} className="flex items-center">
+                <motion.div
+                  initial={{ opacity: 0, y: 10 }}
+                  animate={{ opacity: 1, y: 0 }}
+                  transition={{ duration: 0.3, delay: 0.2 }}
+                  className="bg-white/70 backdrop-blur-sm rounded-xl p-6 shadow-sm border border-gray-100"
+                >
+                  <div className="flex items-center gap-2 mb-4">
+                    <div className="h-5 w-1 rounded-full bg-amber-500"></div>
+                    <h2 className="text-lg font-semibold text-gray-900">
+                      Asignado/s
+                    </h2>
+                  </div>
+                  <ul className="space-y-3">
+                    {taskData.assignees.map((assignee, index) => (
+                      <motion.li
+                        key={assignee.id}
+                        initial={{ opacity: 0, x: 10 }}
+                        animate={{ opacity: 1, x: 0 }}
+                        transition={{ duration: 0.2, delay: 0.1 * index }}
+                        className="flex items-center gap-3 p-3 rounded-lg bg-gray-50/80 border border-gray-100"
+                      >
                         {assignee.profilePicture ? (
-                          <img
-                            src={assignee.profilePicture}
-                            alt={assignee.username}
-                            className="w-8 h-8 rounded-full mr-2"
-                          />
+                          <div className="rounded-full overflow-hidden border-2 border-white shadow-sm">
+                            <img
+                              src={assignee.profilePicture}
+                              alt={assignee.username}
+                              className="w-8 h-8 object-cover"
+                            />
+                          </div>
                         ) : (
-                          <div className="w-8 h-8 rounded-full bg-blue-100 flex items-center justify-center mr-2">
+                          <div className="w-8 h-8 rounded-full bg-gradient-to-br from-amber-400 to-orange-500 text-white flex items-center justify-center shadow-sm border-2 border-white">
                             {assignee.username.charAt(0).toUpperCase()}
                           </div>
                         )}
-                        <span>{assignee.username}</span>
-                      </li>
+                        <span className="text-sm font-medium">
+                          {assignee.username}
+                        </span>
+                      </motion.li>
                     ))}
                   </ul>
-                </div>
+                </motion.div>
               )}
             </div>
           </div>
         </div>
-      </div>
+      </motion.div>
     </div>
   );
 };
