@@ -1,7 +1,6 @@
 import { useState } from "react";
 import { motion } from "framer-motion";
 import { useClickUpTask } from "../hooks/useClickUpTask";
-import toast from "react-hot-toast";
 import { Textarea } from "./ui/textarea";
 import { Button } from "./ui/button";
 
