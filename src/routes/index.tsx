@@ -61,7 +61,7 @@ function App() {
       {isLoading &&
         toast.loading("Cargando...", {
           id: "loading",
-          duration: 1000,
+          duration: 700,
         })}
 
       {taskData && (
