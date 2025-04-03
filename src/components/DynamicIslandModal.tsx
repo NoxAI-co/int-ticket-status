@@ -54,10 +54,13 @@ const DynamicIslandModal = ({
       height: "40px",
       borderRadius: "20px",
       opacity: 0,
-      y: -100,
-      scale: 0.8,
+      y: 50,
+      scale: 0.9,
       transition: {
-        duration: 0.3,
+        type: "spring",
+        stiffness: 500,
+        damping: 40,
+        duration: 0.4,
       },
     },
   };
@@ -66,6 +69,13 @@ const DynamicIslandModal = ({
   const backdropVariants: Variants = {
     closed: { opacity: 0 },
     open: { opacity: 1 },
+    exit: { 
+      opacity: 0,
+      transition: { 
+        duration: 0.3,
+        ease: "easeOut" 
+      } 
+    }
   };
 
   // Animation variants for the content
@@ -75,25 +85,28 @@ const DynamicIslandModal = ({
       opacity: 1,
       transition: { delay: 0.2 },
     },
+    exit: {
+      opacity: 0,
+      transition: { duration: 0.15 }
+    }
   };
 
   return (
-    <AnimatePresence>
+    <AnimatePresence mode="wait">
       {isOpen && (
         <>
-
           <motion.div
-            className="fixed inset-0 bg-black/25 z-40"
+            className="fixed inset-0 bg-black/25 backdrop-blur-sm z-40"
             initial="closed"
             animate="open"
-            exit="closed"
+            exit="exit"
             variants={backdropVariants}
             onClick={onClose}
           />
 
           {/* Modal */}
           <motion.div
-            className="fixed top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 bg-white/80 backdrop-blur-lg shadow-xl overflow-hidden z-50"
+            className="fixed top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 bg-white/80 dark:bg-neutral-800/80 backdrop-blur-lg shadow-xl overflow-hidden z-50"
             initial="closed"
             animate="open"
             exit="exit"
@@ -102,7 +115,7 @@ const DynamicIslandModal = ({
             {/* Close button */}
             <button
               onClick={onClose}
-              className="absolute top-4 right-4 z-10 text-gray-500 hover:text-gray-700 transition-colors"
+              className="absolute top-4 right-4 z-10 text-gray-500 dark:text-gray-300 hover:text-gray-700 dark:hover:text-white transition-colors"
               aria-label="Close modal"
             >
               <svg
@@ -127,6 +140,7 @@ const DynamicIslandModal = ({
               variants={contentVariants}
               initial="closed"
               animate="open"
+              exit="exit"
             >
               {children}
             </motion.div>
