@@ -1,4 +1,5 @@
 import type { ClickUpComment, ClickUpTask } from "@/types/ClickUpTask";
+import { TicketIcon } from "lucide-react";
 
 interface Props {
   taskData: ClickUpTask;
@@ -12,14 +13,22 @@ export const TaskDetail = ({ taskData, comments, searchTaskId }: Props) => {
       <div className="bg-white rounded-lg overflow-hidden mb-6">
         <div className="p-6 border-b">
           <div className="flex justify-between items-start">
-            <h1 className="text-2xl font-bold">{taskData.name}</h1>
-            <span
-              className={`px-3 py-1 rounded-full text-sm font-medium ${
-                taskData.status?.color || "bg-emerald-200"
-              }`}
-            >
-              {taskData.status?.status || "No Status"}
-            </span>
+            <h1 className="text-2xl font-bold max-w-[70%] overflow-hidden text-ellipsis whitespace-nowrap">
+              {taskData.name}
+            </h1>
+            <article className="relative inline-flex items-center gap-2 px-3 py-1 rounded-full text-md font-medium capitalize">
+              {/* <div
+                className="absolute left-0 h-2 w-2 rounded-full flex items-center justify-center"
+                style={{ backgroundColor: taskData.status?.color || "#gray" }}
+              >
+                <span className="sr-only">Status</span>
+              </div> */}
+              <TicketIcon
+                className={`h-6 w-6`}
+                style={{ color: taskData.status?.color || "#E53E3E" }}
+              />
+              <span>{taskData.status?.status || "No Status"}</span>
+            </article>
           </div>
         </div>
 
@@ -29,7 +38,7 @@ export const TaskDetail = ({ taskData, comments, searchTaskId }: Props) => {
               <h2 className="text-lg font-semibold mb-2">Descripción</h2>
               <div className="prose max-w-none">
                 {taskData.description ? (
-                  <p className="whitespace-pre-wrap">
+                  <p className="whitespace-pre-wrap max-h-80 overflow-y-auto">
                     {taskData.description}
                   </p>
                 ) : (
@@ -40,9 +49,7 @@ export const TaskDetail = ({ taskData, comments, searchTaskId }: Props) => {
               </div>
 
               <div className="mt-6">
-                <h2 className="text-lg font-semibold mb-2">
-                  URL del soporte
-                </h2>
+                <h2 className="text-lg font-semibold mb-2">URL del soporte</h2>
                 <div className="flex items-center">
                   <input
                     type="text"
@@ -65,7 +72,7 @@ export const TaskDetail = ({ taskData, comments, searchTaskId }: Props) => {
 
               {comments && comments.length > 0 && (
                 <div className="mt-6 min-w-md">
-                  <h2 className="text-lg font-semibold mb-4">Comments</h2>
+                  <h2 className="text-lg font-semibold mb-4">Comentarios</h2>
 
                   <ul className="space-y-4">
                     {comments.map((comment) => (
@@ -80,9 +87,7 @@ export const TaskDetail = ({ taskData, comments, searchTaskId }: Props) => {
                               />
                             ) : (
                               <div className="w-10 h-10 rounded-full bg-gray-200 flex items-center justify-center">
-                                {comment.user.username
-                                  .charAt(0)
-                                  .toUpperCase()}
+                                {comment.user.username.charAt(0).toUpperCase()}
                               </div>
                             )}
                           </div>
@@ -117,7 +122,7 @@ export const TaskDetail = ({ taskData, comments, searchTaskId }: Props) => {
                 <h2 className="text-lg font-semibold mb-2">Detalles</h2>
                 <dl className="space-y-2">
                   <div>
-                    <dt className="text-sm text-gray-500">Task ID</dt>
+                    <dt className="text-sm text-gray-500">ID Soporte</dt>
                     <dd className="font-mono text-sm">{searchTaskId}</dd>
                   </div>
 
@@ -145,9 +150,7 @@ export const TaskDetail = ({ taskData, comments, searchTaskId }: Props) => {
 
               {taskData.assignees && taskData.assignees.length > 0 && (
                 <div className="bg-gray-50 p-4 rounded">
-                  <h2 className="text-lg font-semibold mb-2">
-                    Asignado/s
-                  </h2>
+                  <h2 className="text-lg font-semibold mb-2">Asignado/s</h2>
                   <ul className="space-y-2">
                     {taskData.assignees.map((assignee) => (
                       <li key={assignee.id} className="flex items-center">
@@ -174,4 +177,4 @@ export const TaskDetail = ({ taskData, comments, searchTaskId }: Props) => {
       </div>
     </div>
   );
-}
+};

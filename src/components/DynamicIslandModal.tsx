@@ -1,5 +1,5 @@
 import { motion, AnimatePresence, type Variants } from "framer-motion";
-import {  useState, useEffect } from "react";
+import { useEffect } from "react";
 
 interface DynamicIslandModalProps {
   isOpen: boolean;
@@ -13,8 +13,6 @@ const DynamicIslandModal = ({
   onClose,
   children,
 }: DynamicIslandModalProps) => {
-  const [isAnimating, setIsAnimating] = useState(false);
-
   // Handle escape key press to close the modal
   useEffect(() => {
     const handleEscapeKey = (e: KeyboardEvent) => {
@@ -100,8 +98,6 @@ const DynamicIslandModal = ({
             animate="open"
             exit="exit"
             variants={modalVariants}
-            onAnimationStart={() => setIsAnimating(true)}
-            onAnimationComplete={() => setIsAnimating(false)}
           >
             {/* Close button */}
             <button

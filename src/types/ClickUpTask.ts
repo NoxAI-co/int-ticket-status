@@ -1,4 +1,3 @@
-// Service for handling ClickUp API requests
 export interface ClickUpTask {
   id: string;
   name: string;
