@@ -17,10 +17,8 @@ function App() {
 
   const clickUpTask = useClickUpTask();
 
-  const {
-    data: taskData,
-    isLoading,
-  } = clickUpTask.useTaskDetails(searchTaskId);
+  const { data: taskData, isLoading } =
+    clickUpTask.useTaskDetails(searchTaskId);
 
   const { data: comments } = clickUpTask.useTaskComments(searchTaskId);
 

@@ -23,6 +23,21 @@ export function useClickUpTask() {
     });
   };
 
+  const useAddComment = () => {
+    const queryClient = useQueryClient();
+
+    return useMutation({
+      mutationKey: ["clickupAddComment"],
+      mutationFn: ({ taskId, comment }: { taskId: string; comment: string }) =>
+        clickupService.addComment(taskId, comment),
+      onSuccess: (_, variables) => {
+        queryClient.invalidateQueries({
+          queryKey: ["clickupComments", variables.taskId],
+        });
+      },
+    });
+  };
+
   const useUploadAttachment = () => {
     const queryClient = useQueryClient();
 
@@ -40,6 +55,7 @@ export function useClickUpTask() {
   return {
     useTaskDetails,
     useTaskComments,
+    useAddComment,
     useUploadAttachment,
   };
 }
