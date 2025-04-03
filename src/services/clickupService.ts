@@ -1,4 +1,5 @@
 import type { ClickUpComment, ClickUpTask } from "@/types/ClickUpTask";
+import toast from "react-hot-toast";
 
 
 export const clickupService = {
@@ -15,7 +16,10 @@ export const clickupService = {
     });
 
     if (!resp.ok) {
+      toast.error("Error al encontrar el ticket");
       throw new Error(`Error: ${resp.status} - ${resp.statusText}`);
+    }else{
+      toast.success("Ticket encontrado!");
     }
 
     return resp.json();

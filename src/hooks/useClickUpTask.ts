@@ -15,11 +15,12 @@ export function useClickUpTask() {
     });
   };
 
-
   const useTaskComments = (taskId: string) => {
     return useQuery({
       queryKey: ["clickupComments", taskId],
       queryFn: () => clickupService.getTaskComments(taskId),
+      retry: false,
+      refetchOnWindowFocus: false,
       enabled: !!taskId,
     });
   };

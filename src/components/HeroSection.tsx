@@ -6,6 +6,7 @@ import { ModeToggle } from "./mode-toggle";
 interface HeroSectionProps {
   taskId: string;
   setTaskId: (value: string) => void;
+  isLoading: boolean;
   handleSearch: () => void;
 }
 
@@ -13,6 +14,7 @@ export default function HeroSection({
   taskId,
   setTaskId,
   handleSearch,
+  isLoading,
 }: HeroSectionProps) {
   return (
     <div className="flex min-h-screen flex-col">
@@ -80,7 +82,7 @@ export default function HeroSection({
                     onChange={(e) => setTaskId(e.target.value)}
                   />
                 </div>
-                <Button type="button" onClick={handleSearch}>
+                <Button type="button" disabled={isLoading} onClick={handleSearch}>
                   Consultar
                 </Button>
               </div>

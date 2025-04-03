@@ -1,10 +1,5 @@
 import type { ClickUpComment, ClickUpTask } from "@/types/ClickUpTask";
-import {
-  TicketIcon,
-  ClipboardCopy,
-  Mail,
-  Building2,
-} from "lucide-react";
+import { TicketIcon, ClipboardCopy, Mail, Building2 } from "lucide-react";
 import { Button } from "./ui/button";
 import { Input } from "./ui/input";
 import { motion } from "framer-motion";
@@ -14,6 +9,7 @@ import {
   TooltipProvider,
   TooltipTrigger,
 } from "./ui/tooltip";
+import toast from "react-hot-toast";
 
 interface Props {
   taskData: ClickUpTask;
@@ -40,7 +36,7 @@ export const TaskDetail = ({ taskData, comments, searchTaskId }: Props) => {
               <TooltipProvider>
                 <Tooltip>
                   <TooltipTrigger asChild>
-                    <h1 className="text-2xl font-bold text-gray-900 max-w-4xl text-nowrap whitespace-nowrap overflow-hidden text-ellipsis ">
+                    <h1 className="text-2xl font-bold text-gray-900 max-w-[250px] md:max-w-4xl text-nowrap whitespace-nowrap overflow-hidden text-ellipsis ">
                       {taskData.name}
                     </h1>
                   </TooltipTrigger>
@@ -122,11 +118,21 @@ export const TaskDetail = ({ taskData, comments, searchTaskId }: Props) => {
                         navigator.clipboard.writeText(
                           `${window.location.origin}/?ticket=${searchTaskId}`
                         );
+                        toast("Copiado!", {
+                          icon: "✔️",
+                          position: "bottom-center",
+                          style: {
+                            borderRadius: "10px",
+                            background: "#333",
+                            fontWeight: "bold",
+                            color: "#fff",
+                          },
+                        });
                       }}
-                      className="bg-blue-500 hover:bg-blue-600 text-white flex items-center gap-2"
+                      className="bg-emerald-500 hover:bg-emerald-600 text-white flex items-center gap-2"
                     >
                       <ClipboardCopy className="h-4 w-4" />
-                      <span>Copy</span>
+                      <span>Copiar</span>
                     </Button>
                   </motion.div>
                 </div>

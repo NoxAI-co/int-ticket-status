@@ -83,7 +83,7 @@ const DynamicIslandModal = ({
         <>
 
           <motion.div
-            className="fixed inset-0 bg-black/15 z-40"
+            className="fixed inset-0 bg-black/25 z-40"
             initial="closed"
             animate="open"
             exit="closed"

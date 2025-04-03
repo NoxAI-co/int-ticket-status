@@ -20,7 +20,7 @@ function App() {
   const {
     data: taskData,
     isLoading,
-    error,
+    isError,
   } = clickUpTask.useTaskDetails(searchTaskId);
 
   const { data: comments } = clickUpTask.useTaskComments(searchTaskId);
@@ -51,15 +51,18 @@ function App() {
 
   return (
     <div className="h-screen">
-      <HeroSection 
+      <HeroSection
         taskId={taskId}
         setTaskId={setTaskId}
+        isLoading={isLoading}
         handleSearch={handleSearch}
       />
 
-      {error && toast.error("Error interno. Intente nuevamente mas tarde.")}
-
-      {isLoading && <p>Loading...</p>}
+      {isLoading &&
+        toast.loading("Cargando...", {
+          id: "loading",
+          duration: 1000,
+        })}
 
       {taskData && (
         <DynamicIslandModal isOpen={isModalOpen} onClose={handleCloseModal}>
