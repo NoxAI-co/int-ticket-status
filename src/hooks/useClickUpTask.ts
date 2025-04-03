@@ -1,9 +1,7 @@
-import { useQuery } from "@tanstack/react-query";
+import { useMutation, useQuery, useQueryClient } from "@tanstack/react-query";
 import { clickupService } from "../services/clickupService";
 
 export function useClickUpTask() {
-  //   const queryClient = useQueryClient();
-
   const useTaskDetails = (taskId: string) => {
     return useQuery({
       queryKey: ["clickupTask", taskId],
@@ -25,32 +23,23 @@ export function useClickUpTask() {
     });
   };
 
-  //   const useAddComment = () => {
-  //     return useMutation({
-  //       mutationFn: ({ taskId, comment }: { taskId: string; comment: string }) =>
-  //         clickupService.addComment(taskId, comment),
-  //       onSuccess: (_, variables) => {
-  //         // Invalidate comments query to refresh the list
-  //         queryClient.invalidateQueries({ queryKey: ['clickupComments', variables.taskId] });
-  //       },
-  //     });
-  //   };
+  const useUploadAttachment = () => {
+    const queryClient = useQueryClient();
 
-  //   const useUploadAttachment = () => {
-  //     return useMutation({
-  //       mutationFn: ({ taskId, file }: { taskId: string; file: File }) =>
-  //         clickupService.uploadAttachment(taskId, file),
-  //       onSuccess: (_, variables) => {
-  //         // Invalidate task query to refresh attachments
-  //         queryClient.invalidateQueries({ queryKey: ['clickupTask', variables.taskId] });
-  //       },
-  //     });
-  //   };
+    return useMutation({
+      mutationFn: ({ taskId, file }: { taskId: string; file: File }) =>
+        clickupService.uploadAttachment(taskId, file),
+      onSuccess: (_, variables) => {
+        queryClient.invalidateQueries({
+          queryKey: ["clickupTask", variables.taskId],
+        });
+      },
+    });
+  };
 
   return {
     useTaskDetails,
     useTaskComments,
-    // useAddComment,
-    // useUploadAttachment,
+    useUploadAttachment,
   };
 }

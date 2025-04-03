@@ -10,7 +10,7 @@ import {
   TooltipTrigger,
 } from "./ui/tooltip";
 import toast from "react-hot-toast";
-import Component12 from "./comp-406";
+import DropzoneActions from "./DropzoneActions";
 
 interface Props {
   taskData: ClickUpTask;
@@ -90,6 +90,59 @@ export const TaskDetail = ({ taskData, comments, searchTaskId }: Props) => {
                   )}
                 </div>
               </motion.div>
+
+              {taskData.attachments && taskData.attachments.length > 0 && (
+                <motion.div
+                  initial={{ opacity: 0, y: 10 }}
+                  animate={{ opacity: 1, y: 0 }}
+                  transition={{ duration: 0.3, delay: 0.2 }}
+                  className="bg-white/70 dark:bg-neutral-800/70 backdrop-blur-sm rounded-xl p-6 shadow-sm border border-neutral-100 dark:border-neutral-700"
+                >
+                  <div className="flex items-center gap-2 mb-4">
+                    <div className="h-5 w-1 rounded-full bg-cyan-400"></div>
+                    <h2 className="text-lg font-semibold text-gray-900 dark:text-white">
+                      Archivos
+                    </h2>
+                  </div>
+
+                  <div className="grid grid-cols-1 lg:grid-cols-2 gap-4">
+                    {taskData.attachments.map((attachment, index) => (
+                      <motion.div
+                        key={attachment.id}
+                        initial={{ opacity: 0, y: 10 }}
+                        animate={{ opacity: 1, y: 0 }}
+                        transition={{ duration: 0.2, delay: 0.1 * index }}
+                        className="flex items-center gap-2 bg-gray-50/80 dark:bg-neutral-700/80 border border-neutral-100 dark:border-neutral-600 rounded-lg p-3 shadow-sm"
+                      >
+                        <div className="flex-shrink-0">
+                          <div className="w-10 h-10 rounded-lg bg-gray-100/80 dark:bg-neutral-700/80 flex items-center justify-center">
+                            <img
+                              src={attachment.url}
+                              alt={attachment.title}
+                              className="w-8 h-8 object-cover"
+                            />
+                          </div>
+                        </div>
+                        <div className="flex-1">
+                          <h3 className="text-sm font-medium text-gray-900 dark:text-white">
+                            {attachment.date}.{attachment.extension}
+                          </h3>
+                        </div>
+                        <div className="flex items-center gap-2">
+                          <Button
+                            onClick={() => {
+                              window.open(attachment.url, "_blank");
+                            }}
+                            className="dark:bg-emerald-500/10 border-[1px] dark:border-emerald-500 dark:text-emerald-300 bg-emerald-500 hover:bg-emerald-600 text-white flex items-center gap-2 hover:opacity-70 cursor-pointer"
+                          >
+                            <span>Descargar</span>
+                          </Button>
+                        </div>
+                      </motion.div>
+                    ))}
+                  </div>
+                </motion.div>
+              )}
 
               <motion.div
                 initial={{ opacity: 0, y: 10 }}
@@ -253,7 +306,6 @@ export const TaskDetail = ({ taskData, comments, searchTaskId }: Props) => {
                   </div>
                 </dl>
               </motion.div>
-
               {taskData.assignees && taskData.assignees.length > 0 && (
                 <motion.div
                   initial={{ opacity: 0, y: 10 }}
@@ -316,6 +368,26 @@ export const TaskDetail = ({ taskData, comments, searchTaskId }: Props) => {
                   </motion.div>
                 </motion.div>
               )}
+
+              <div>
+                <motion.div
+                  initial={{ opacity: 0, y: 10 }}
+                  animate={{ opacity: 1, y: 0 }}
+                  transition={{ duration: 0.3, delay: 0.1 }}
+                  className="bg-white/70 dark:bg-neutral-800/70 backdrop-blur-sm rounded-xl p-6 shadow-sm border border-neutral-100 dark:border-neutral-700"
+                >
+                  <div className="flex items-center gap-2 mb-4">
+                    <div className="h-5 w-1 rounded-full bg-emerald-300"></div>
+                    <h2 className="text-lg font-semibold text-gray-900 dark:text-white">
+                      Acciones necesarias
+                    </h2>
+                  </div>
+
+                  <div>
+                    <DropzoneActions taskId={searchTaskId} />
+                  </div>
+                </motion.div>
+              </div>
             </div>
           </div>
         </div>

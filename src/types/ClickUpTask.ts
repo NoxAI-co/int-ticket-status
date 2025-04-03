@@ -14,6 +14,8 @@ export interface ClickUpTask {
     id: string;
     url: string;
     title: string;
+    date: string;
+    extension: string;
   }>;
 
   custom_fields?: Array<{
