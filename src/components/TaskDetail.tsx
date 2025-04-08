@@ -120,6 +120,9 @@ export const TaskDetail = ({ taskData, comments, searchTaskId }: Props) => {
                             <img
                               src={attachment.url}
                               alt={attachment.title}
+                              onError={(e) => {
+                                e.currentTarget.src = "/file.png";
+                              }}
                               className="w-8 h-8 object-cover"
                             />
                           </div>
