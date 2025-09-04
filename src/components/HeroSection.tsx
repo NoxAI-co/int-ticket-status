@@ -21,7 +21,7 @@ export default function HeroSection({
       <header className="border-b bg-background px-4 py-3">
         <div className="flex items-center justify-between">
           <a href="/" className="flex items-center gap-2 font-semibold">
-            <img className="h-10 rounded-md" src="gestoru-logo.webp" alt="" />
+            <img className="h-10 rounded-md" src="logo-integra.svg" alt="" />
           </a>
 
           <Button variant="ghost" size="sm" className="md:hidden">
@@ -46,10 +46,10 @@ export default function HeroSection({
 
           <nav className="hidden md:flex gap-6">
             <a
-              href="https://gestoru.com/empresa/"
+              href="#"
               className="text-sm font-medium text-muted-foreground hover:text-foreground"
             >
-              Gestoru Software
+              Soporte integra
             </a>
           </nav>
 
@@ -177,7 +177,7 @@ export default function HeroSection({
       <footer className="border-t bg-muted/40 px-4 py-6">
         <div className="flex flex-col items-center justify-between gap-4 md:flex-row">
           <p className="text-center text-sm text-muted-foreground md:text-left">
-            &copy; {new Date().getFullYear()} Gestoru Software.
+            &copy; {new Date().getFullYear()} Integra Software.
           </p>
         </div>
       </footer>
