@@ -1,5 +1,5 @@
 import type { ClickUpComment, ClickUpTask } from "@/types/ClickUpTask";
-import { TicketIcon, ClipboardCopy, Mail, Building2 } from "lucide-react";
+import { TicketIcon, ClipboardCopy, Building2 } from "lucide-react";
 import { Button } from "./ui/button";
 import { Input } from "./ui/input";
 import { motion } from "framer-motion";
