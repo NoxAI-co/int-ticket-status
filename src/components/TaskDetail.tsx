@@ -20,6 +20,32 @@ interface Props {
 }
 
 export const TaskDetail = ({ taskData, comments, searchTaskId }: Props) => {
+  // Función para obtener el nombre de la empresa basado en el valor del campo
+  const getCompanyName = () => {
+    const empresaField = taskData.custom_fields?.find(
+      (field) => field.name === "Empresa"
+    );
+
+    if (
+      !empresaField ||
+      empresaField.value === null ||
+      empresaField.value === undefined
+    ) {
+      return "Sin Empresa";
+    }
+
+    // Si el campo tiene opciones disponibles, buscar por orderindex
+    if (empresaField.type_config?.options) {
+      const selectedOption = empresaField.type_config.options.find(
+        (option) => option.orderindex === Number(empresaField.value)
+      );
+      return selectedOption ? selectedOption.name : "Sin Empresa";
+    }
+
+    // Fallback: si no hay opciones, mostrar el valor tal como está
+    return String(empresaField.value);
+  };
+
   return (
     <div className="p-6 to-white h-full">
       <motion.div
@@ -241,10 +267,10 @@ export const TaskDetail = ({ taskData, comments, searchTaskId }: Props) => {
                                 typeof comment.comment === "string"
                                   ? comment.comment
                                   : Array.isArray(comment.comment)
-                                    ? comment.comment.map((item, index) => (
-                                        <span key={index}>{item.text}</span>
-                                      ))
-                                    : comment.comment_text /* Fallback to plain text version */
+                                  ? comment.comment.map((item, index) => (
+                                      <span key={index}>{item.text}</span>
+                                    ))
+                                  : comment.comment_text /* Fallback to plain text version */
                               }
                             </div>
                           </div>
@@ -286,26 +312,10 @@ export const TaskDetail = ({ taskData, comments, searchTaskId }: Props) => {
                     <Building2 className="h-5 w-5 text-gray-500 dark:text-gray-400" />
                     <div>
                       <dt className="text-xs font-medium text-gray-500 dark:text-gray-400 uppercase tracking-wide">
-                        NIT
+                        Empresa
                       </dt>
                       <dd className="text-sm text-gray-900 dark:text-gray-200">
-                        {taskData.custom_fields?.find(
-                          (field) => field.name === "NIT"
-                        )?.value || "Sin NIT"}
-                      </dd>
-                    </div>
-                  </div>
-
-                  <div className="flex items-center gap-3 p-3 rounded-lg bg-gray-50/80 dark:bg-neutral-700/80 border border-neutral-100 dark:border-neutral-600">
-                    <Mail className="h-5 w-5 text-gray-500 dark:text-gray-400" />
-                    <div>
-                      <dt className="text-xs font-medium text-gray-500 dark:text-gray-400 uppercase tracking-wide">
-                        Email
-                      </dt>
-                      <dd className="text-sm text-gray-900 dark:text-gray-200 break-all">
-                        {taskData.custom_fields?.find(
-                          (field) => field.name === "Mail"
-                        )?.value || "Sin email"}
+                        {getCompanyName()}
                       </dd>
                     </div>
                   </div>

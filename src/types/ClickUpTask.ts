@@ -22,7 +22,17 @@ export interface ClickUpTask {
     id: string;
     name: string;
     type: string;
-    value: string;
+    value: string | number;
+    type_config?: {
+      sorting?: string;
+      new_drop_down?: boolean;
+      options?: Array<{
+        id: string;
+        name: string;
+        color: string;
+        orderindex: number;
+      }>;
+    };
   }>;
 
   due_date?: string;

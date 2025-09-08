@@ -1,4 +1,4 @@
-import { createFileRoute } from "@tanstack/react-router";
+import { createFileRoute, useNavigate } from "@tanstack/react-router";
 import { useState, useEffect } from "react";
 import { useClickUpTask } from "../hooks/useClickUpTask";
 import toast from "react-hot-toast";
@@ -14,6 +14,7 @@ function App() {
   const [taskId, setTaskId] = useState("");
   const [searchTaskId, setSearchTaskId] = useState("");
   const [isModalOpen, setIsModalOpen] = useState(false);
+  const navigate = useNavigate();
 
   const clickUpTask = useClickUpTask();
 
@@ -33,6 +34,17 @@ function App() {
       setIsModalOpen(true);
     }
   }, []);
+
+  // Efecto para actualizar la URL cuando la consulta sea exitosa
+  useEffect(() => {
+    if (taskData && searchTaskId) {
+      navigate({
+        to: "/",
+        search: { ticket: taskId },
+        replace: true,
+      });
+    }
+  }, [taskData, searchTaskId, taskId, navigate]);
 
   const handleSearch = () => {
     if (taskId.trim()) {
