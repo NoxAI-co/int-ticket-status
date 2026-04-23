@@ -63,9 +63,8 @@ export default function CreateTicketForm() {
   const [createdTaskId, setCreatedTaskId] = useState<string | null>(null);
   const [errors, setErrors] = useState<Partial<Record<keyof FormData, string>>>({});
 
-  const { useCreateTask, useUploadAttachment } = useClickUpTask();
+  const { useCreateTask } = useClickUpTask();
   const createTask = useCreateTask();
-  const uploadAttachment = useUploadAttachment();
 
   const onDrop = useCallback((accepted: File[]) => {
     setFiles((prev) => {
