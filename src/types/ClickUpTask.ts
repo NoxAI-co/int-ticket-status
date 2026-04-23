@@ -1,3 +1,10 @@
+export interface CreateTaskPayload {
+  name: string;
+  markdown_description: string;
+  priority: number;
+  notify_all?: boolean;
+}
+
 export interface ClickUpTask {
   id: string;
   name: string;

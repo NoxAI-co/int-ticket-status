@@ -1,4 +1,4 @@
-import type { ClickUpComment, ClickUpTask } from "@/types/ClickUpTask";
+import type { ClickUpComment, ClickUpTask, CreateTaskPayload } from "@/types/ClickUpTask";
 import toast from "react-hot-toast";
 
 export const clickupService = {
@@ -68,6 +68,31 @@ export const clickupService = {
       toast.success("Comentario enviado!");
     }
 
+    return resp.json();
+  },
+
+  async createTask(payload: CreateTaskPayload): Promise<ClickUpTask> {
+    const listId = import.meta.env.VITE_LIST_ID;
+    if (!listId) throw new Error("VITE_LIST_ID no está configurado");
+
+    const resp = await fetch(
+      `https://api.clickup.com/api/v2/list/${listId}/task`,
+      {
+        method: "POST",
+        headers: {
+          Authorization: import.meta.env.VITE_API_KEY,
+          "Content-Type": "application/json",
+        },
+        body: JSON.stringify({ ...payload, notify_all: true }),
+      }
+    );
+
+    if (!resp.ok) {
+      toast.error("Error al crear el ticket de soporte");
+      throw new Error(`Error: ${resp.status} - ${resp.statusText}`);
+    }
+
+    toast.success("¡Ticket creado con éxito!");
     return resp.json();
   },
 

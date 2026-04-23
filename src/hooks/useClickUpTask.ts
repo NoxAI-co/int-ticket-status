@@ -1,5 +1,6 @@
 import { useMutation, useQuery, useQueryClient } from "@tanstack/react-query";
 import { clickupService } from "../services/clickupService";
+import type { CreateTaskPayload } from "@/types/ClickUpTask";
 
 export function useClickUpTask() {
   const useTaskDetails = (taskId: string) => {
@@ -52,10 +53,19 @@ export function useClickUpTask() {
     });
   };
 
+  const useCreateTask = () => {
+    return useMutation({
+      mutationKey: ["clickupCreateTask"],
+      mutationFn: (payload: CreateTaskPayload) =>
+        clickupService.createTask(payload),
+    });
+  };
+
   return {
     useTaskDetails,
     useTaskComments,
     useAddComment,
     useUploadAttachment,
+    useCreateTask,
   };
 }
