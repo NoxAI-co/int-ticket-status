@@ -1,7 +1,8 @@
 import { Button } from "@/components/ui/button";
 import { Input } from "@/components/ui/input";
-import { SearchIcon } from "lucide-react";
+import { SearchIcon, PlusCircle } from "lucide-react";
 import { ModeToggle } from "./mode-toggle";
+import { Link } from "@tanstack/react-router";
 
 interface HeroSectionProps {
   taskId: string;
@@ -44,16 +45,19 @@ export default function HeroSection({
             </svg>
           </Button>
 
-          <nav className="hidden md:flex gap-6">
-            <a
-              href="#"
-              className="text-sm font-medium text-muted-foreground hover:text-foreground"
-            >
+          <nav className="hidden md:flex gap-6 items-center">
+            <span className="text-sm font-medium text-muted-foreground">
               Soporte Parley Media
-            </a>
+            </span>
           </nav>
 
-          <nav className="flex gap-6">
+          <nav className="flex gap-3 items-center">
+            <Link to="/nuevo">
+              <Button size="sm" className="gap-1.5">
+                <PlusCircle className="h-4 w-4" />
+                <span className="hidden sm:inline">Crear soporte</span>
+              </Button>
+            </Link>
             <ModeToggle />
           </nav>
         </div>
@@ -92,9 +96,9 @@ export default function HeroSection({
         <section className="w-full py-12 md:py-24 lg:py-32">
           <div className="px-4 md:px-64">
             <div className="grid gap-10 sm:grid-cols-2 lg:grid-cols-3">
-              <div className="rounded-lg border bg-card p-6 shadow-sm">
+              <Link to="/nuevo" className="block rounded-lg border bg-card p-6 shadow-sm hover:border-primary/50 hover:shadow-md transition-all group">
                 <div className="flex items-center gap-4">
-                  <div className="rounded-full bg-primary/10 p-2">
+                  <div className="rounded-full bg-primary/10 p-2 group-hover:bg-primary/20 transition-colors">
                     <svg
                       xmlns="http://www.w3.org/2000/svg"
                       width="24"
@@ -116,7 +120,7 @@ export default function HeroSection({
                 <p className="mt-2 text-sm text-muted-foreground">
                   Crea un nuevo soporte para tu empresa.
                 </p>
-              </div>
+              </Link>
               <div className="rounded-lg border bg-card p-6 shadow-sm">
                 <div className="flex items-center gap-4">
                   <div className="rounded-full bg-primary/10 p-2">
