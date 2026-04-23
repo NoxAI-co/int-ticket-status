@@ -21,7 +21,7 @@ export default function HeroSection({
       <header className="border-b bg-background px-4 py-3">
         <div className="flex items-center justify-between">
           <a href="/" className="flex items-center gap-2 font-semibold">
-            <img className="h-10 rounded-md" src="logo-integra.svg" alt="" />
+            <img className="h-10 rounded-md" src="logo-parley-media.svg" alt="Parley Media" />
           </a>
 
           <Button variant="ghost" size="sm" className="md:hidden">
@@ -49,7 +49,7 @@ export default function HeroSection({
               href="#"
               className="text-sm font-medium text-muted-foreground hover:text-foreground"
             >
-              Soporte integra
+              Soporte Parley Media
             </a>
           </nav>
 
@@ -177,7 +177,7 @@ export default function HeroSection({
       <footer className="border-t bg-muted/40 px-4 py-6">
         <div className="flex flex-col items-center justify-between gap-4 md:flex-row">
           <p className="text-center text-sm text-muted-foreground md:text-left">
-            &copy; {new Date().getFullYear()} Integra Software.
+            &copy; {new Date().getFullYear()} Parley Media.
           </p>
         </div>
       </footer>
