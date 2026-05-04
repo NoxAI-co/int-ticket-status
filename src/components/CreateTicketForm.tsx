@@ -136,7 +136,7 @@ export default function CreateTicketForm() {
         );
       }
 
-      setCreatedTaskId(task.id);
+      setCreatedTaskId(task.custom_id || task.id);
     } catch {
       // toast already shown by service
     }

@@ -57,7 +57,7 @@ export const TaskDetail = ({ taskData, comments, searchTaskId }: Props) => {
           <div className="flex flex-col md:flex-row justify-between items-start gap-4">
             <div className="space-y-2">
               <div className="flex items-center gap-2 text-sm text-gray-500 dark:text-gray-400 mb-1">
-                <span className="font-mono">#{searchTaskId}</span>
+                <span className="font-mono">#{taskData.custom_id || searchTaskId}</span>
                 {/* <span className="inline-block h-1 w-1 rounded-full bg-gray-300"></span>
                 <span>{new Date().toLocaleDateString()}</span> */}
               </div>
@@ -303,7 +303,7 @@ export const TaskDetail = ({ taskData, comments, searchTaskId }: Props) => {
                         ID Soporte
                       </dt>
                       <dd className="font-mono text-sm text-gray-900 dark:text-gray-200">
-                        {searchTaskId}
+                        {taskData.custom_id || searchTaskId}
                       </dd>
                     </div>
                   </div>

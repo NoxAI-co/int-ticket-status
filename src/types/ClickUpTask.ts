@@ -7,6 +7,7 @@ export interface CreateTaskPayload {
 
 export interface ClickUpTask {
   id: string;
+  custom_id?: string | null;
   name: string;
   description?: string;
   status?: {

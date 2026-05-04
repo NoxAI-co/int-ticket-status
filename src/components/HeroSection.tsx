@@ -80,7 +80,7 @@ export default function HeroSection({
                   <Input
                     type="text"
                     autoFocus
-                    placeholder="Escribe tu codigo (e.j., 87knya)"
+                    placeholder="Escribe tu codigo (e.j., PM-123)"
                     className="pl-8 dark:bg-neutral-800 bg-white"
                     value={taskId}
                     onChange={(e) => setTaskId(e.target.value)}
