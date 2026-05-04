@@ -1,14 +1,30 @@
 import type { ClickUpComment, ClickUpTask, CreateTaskPayload } from "@/types/ClickUpTask";
 import toast from "react-hot-toast";
 
+const API_KEY = import.meta.env.VITE_API_KEY;
+const TEAM_ID = import.meta.env.VITE_TEAM_ID;
+
+const getTaskUrl = (taskId: string, suffix = "") => {
+  const baseUrl = `https://api.clickup.com/api/v2/task/${taskId}${suffix}`;
+  const params = new URLSearchParams();
+  
+  if (TEAM_ID) {
+    params.append("custom_task_ids", "true");
+    params.append("team_id", TEAM_ID);
+  }
+  
+  const queryString = params.toString();
+  return queryString ? `${baseUrl}?${queryString}` : baseUrl;
+};
+
 export const clickupService = {
   async getTaskDetails(taskId: string): Promise<ClickUpTask> {
     if (!taskId) throw new Error("Task ID is required");
 
-    const resp = await fetch(`https://api.clickup.com/api/v2/task/${taskId}`, {
+    const resp = await fetch(getTaskUrl(taskId), {
       method: "GET",
       headers: {
-        Authorization: import.meta.env.VITE_API_KEY,
+        Authorization: API_KEY,
         "Content-Type": "application/json",
       },
     });
@@ -26,16 +42,13 @@ export const clickupService = {
   async getTaskComments(taskId: string): Promise<ClickUpComment[]> {
     if (!taskId) throw new Error("Task ID is required");
 
-    const resp = await fetch(
-      `https://api.clickup.com/api/v2/task/${taskId}/comment`,
-      {
-        method: "GET",
-        headers: {
-          Authorization: import.meta.env.VITE_API_KEY,
-          "Content-Type": "application/json",
-        },
-      }
-    );
+    const resp = await fetch(getTaskUrl(taskId, "/comment"), {
+      method: "GET",
+      headers: {
+        Authorization: API_KEY,
+        "Content-Type": "application/json",
+      },
+    });
 
     if (!resp.ok) {
       throw new Error(`Error: ${resp.status} - ${resp.statusText}`);
@@ -49,22 +62,19 @@ export const clickupService = {
     if (!taskId) throw new Error("Task ID is required");
     if (!comment) throw new Error("Comment is required");
 
-    const resp = await fetch(
-      `https://api.clickup.com/api/v2/task/${taskId}/comment`,
-      {
-        method: "POST",
-        headers: {
-          Authorization: import.meta.env.VITE_API_KEY,
-          "Content-Type": "application/json",
-        },
-        body: JSON.stringify({ comment_text: comment }),
-      }
-    );
-    
+    const resp = await fetch(getTaskUrl(taskId, "/comment"), {
+      method: "POST",
+      headers: {
+        Authorization: API_KEY,
+        "Content-Type": "application/json",
+      },
+      body: JSON.stringify({ comment_text: comment }),
+    });
+
     if (!resp.ok) {
       toast.error("Error al enviar el comentario");
       throw new Error(`Error: ${resp.status} - ${resp.statusText}`);
-    }else{
+    } else {
       toast.success("Comentario enviado!");
     }
 
@@ -75,17 +85,22 @@ export const clickupService = {
     const listId = import.meta.env.VITE_LIST_ID;
     if (!listId) throw new Error("VITE_LIST_ID no está configurado");
 
-    const resp = await fetch(
-      `https://api.clickup.com/api/v2/list/${listId}/task`,
-      {
-        method: "POST",
-        headers: {
-          Authorization: import.meta.env.VITE_API_KEY,
-          "Content-Type": "application/json",
-        },
-        body: JSON.stringify({ ...payload, notify_all: true }),
-      }
-    );
+    const baseUrl = `https://api.clickup.com/api/v2/list/${listId}/task`;
+    const params = new URLSearchParams();
+    if (TEAM_ID) {
+      params.append("custom_task_ids", "true");
+      params.append("team_id", TEAM_ID);
+    }
+    const url = params.toString() ? `${baseUrl}?${params.toString()}` : baseUrl;
+
+    const resp = await fetch(url, {
+      method: "POST",
+      headers: {
+        Authorization: API_KEY,
+        "Content-Type": "application/json",
+      },
+      body: JSON.stringify({ ...payload, notify_all: true }),
+    });
 
     if (!resp.ok) {
       toast.error("Error al crear el ticket de soporte");
@@ -103,16 +118,13 @@ export const clickupService = {
     const formData = new FormData();
     formData.append("attachment", file);
 
-    const resp = await fetch(
-      `https://api.clickup.com/api/v2/task/${taskId}/attachment`,
-      {
-        method: "POST",
-        headers: {
-          Authorization: import.meta.env.VITE_API_KEY,
-        },
-        body: formData,
-      }
-    );
+    const resp = await fetch(getTaskUrl(taskId, "/attachment"), {
+      method: "POST",
+      headers: {
+        Authorization: API_KEY,
+      },
+      body: formData,
+    });
 
     if (!resp.ok) {
       throw new Error(`Error: ${resp.status} - ${resp.statusText}`);
