@@ -22,7 +22,7 @@ export default function HeroSection({
       <header className="border-b bg-background px-4 py-3">
         <div className="flex items-center justify-between">
           <a href="/" className="flex items-center gap-2 font-semibold">
-            <img className="h-10 rounded-md" src="logo-parley-media.svg" alt="Parley Media" />
+            <img className="h-10" src="logo.png" alt="Parley Media" />
           </a>
 
           <Button variant="ghost" size="sm" className="md:hidden">
@@ -63,7 +63,7 @@ export default function HeroSection({
         </div>
       </header>
       <main className="flex-1">
-        <section className="w-full py-12 md:py-24 lg:py-32 bg-gradient-to-b from-background to-emerald-400/10">
+        <section className="w-full py-12 md:py-24 lg:py-32 bg-gradient-to-b from-background to-primary/10">
           <div className="px-4 md:px-6">
             <div className="flex flex-col items-center space-y-4 text-center">
               <div className="space-y-2">

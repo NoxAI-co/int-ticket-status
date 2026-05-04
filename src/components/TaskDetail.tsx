@@ -100,7 +100,7 @@ export const TaskDetail = ({ taskData, comments, searchTaskId }: Props) => {
                 className="bg-white/70 dark:bg-neutral-800/70 backdrop-blur-sm rounded-xl p-6 shadow-sm border border-neutral-100 dark:border-neutral-700"
               >
                 <div className="flex items-center gap-2 mb-3">
-                  <div className="h-5 w-1 rounded-full bg-indigo-500"></div>
+                  <div className="h-5 w-1 rounded-full bg-primary"></div>
                   <h2 className="text-lg font-semibold text-gray-900 dark:text-white">
                     Descripción
                   </h2>
@@ -126,7 +126,7 @@ export const TaskDetail = ({ taskData, comments, searchTaskId }: Props) => {
                   className="bg-white/70 dark:bg-neutral-800/70 backdrop-blur-sm rounded-xl p-6 shadow-sm border border-neutral-100 dark:border-neutral-700"
                 >
                   <div className="flex items-center gap-2 mb-4">
-                    <div className="h-5 w-1 rounded-full bg-cyan-400"></div>
+                    <div className="h-5 w-1 rounded-full bg-primary"></div>
                     <h2 className="text-lg font-semibold text-gray-900 dark:text-white">
                       Archivos
                     </h2>
@@ -163,7 +163,7 @@ export const TaskDetail = ({ taskData, comments, searchTaskId }: Props) => {
                             onClick={() => {
                               window.open(attachment.url, "_blank");
                             }}
-                            className="dark:bg-emerald-500/10 border-[1px] dark:border-emerald-500 dark:text-emerald-300 bg-emerald-500 hover:bg-emerald-600 text-white flex items-center gap-2 hover:opacity-70 cursor-pointer"
+                            className="dark:bg-primary/10 border-[1px] dark:border-primary dark:text-primary bg-primary hover:bg-primary/80 text-primary-foreground flex items-center gap-2 hover:opacity-70 cursor-pointer"
                           >
                             <span>Descargar</span>
                           </Button>
@@ -181,7 +181,7 @@ export const TaskDetail = ({ taskData, comments, searchTaskId }: Props) => {
                 className="bg-white/70 dark:bg-neutral-800/70 backdrop-blur-sm rounded-xl p-6 shadow-sm border border-neutral-100 dark:border-neutral-700"
               >
                 <div className="flex items-center gap-2 mb-3">
-                  <div className="h-5 w-1 rounded-full bg-blue-500"></div>
+                  <div className="h-5 w-1 rounded-full bg-primary"></div>
                   <h2 className="text-lg font-semibold text-gray-900 dark:text-white">
                     URL del soporte
                   </h2>
@@ -223,7 +223,7 @@ export const TaskDetail = ({ taskData, comments, searchTaskId }: Props) => {
                 className="bg-white/70 dark:bg-neutral-800/70 backdrop-blur-sm rounded-xl p-6 shadow-sm border border-neutral-100 dark:border-neutral-700"
               >
                 <div className="flex items-center gap-2 mb-4">
-                  <div className="h-5 w-1 rounded-full bg-green-500"></div>
+                  <div className="h-5 w-1 rounded-full bg-primary"></div>
                   <h2 className="text-lg font-semibold text-gray-900 dark:text-white">
                     Comentarios
                   </h2>
@@ -290,7 +290,7 @@ export const TaskDetail = ({ taskData, comments, searchTaskId }: Props) => {
                 className="bg-white/70 dark:bg-neutral-800/70 backdrop-blur-sm rounded-xl p-6 shadow-sm border border-neutral-100 dark:border-neutral-700"
               >
                 <div className="flex items-center gap-2 mb-4">
-                  <div className="h-5 w-1 rounded-full bg-purple-500"></div>
+                  <div className="h-5 w-1 rounded-full bg-primary"></div>
                   <h2 className="text-lg font-semibold text-gray-900 dark:text-white">
                     Detalles
                   </h2>
@@ -329,7 +329,7 @@ export const TaskDetail = ({ taskData, comments, searchTaskId }: Props) => {
                   className="bg-white/70 dark:bg-neutral-800/70 backdrop-blur-sm rounded-xl p-6 shadow-sm border border-neutral-100 dark:border-neutral-700"
                 >
                   <div className="flex items-center gap-2 mb-4">
-                    <div className="h-5 w-1 rounded-full bg-amber-500"></div>
+                    <div className="h-5 w-1 rounded-full bg-primary"></div>
                     <h2 className="text-lg font-semibold text-gray-900 dark:text-white">
                       Asignado/s
                     </h2>
@@ -393,7 +393,7 @@ export const TaskDetail = ({ taskData, comments, searchTaskId }: Props) => {
                     className="bg-white/70 dark:bg-neutral-800/70 backdrop-blur-sm rounded-xl p-6 shadow-sm border border-neutral-100 dark:border-neutral-700"
                   >
                     <div className="flex items-center gap-2 mb-4">
-                      <div className="h-5 w-1 rounded-full bg-emerald-300"></div>
+                      <div className="h-5 w-1 rounded-full bg-primary"></div>
                       <h2 className="text-lg font-semibold text-gray-900 dark:text-white">
                         Acciones necesarias
                       </h2>

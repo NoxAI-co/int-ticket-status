@@ -1,7 +1,0 @@
-<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 220 50" width="220" height="50">
-  <rect width="220" height="50" rx="8" fill="#1A1A2E"/>
-  <circle cx="25" cy="25" r="14" fill="#6C63FF"/>
-  <path d="M19 18 L19 32 L22 32 L22 26 L27 26 C30.3 26 33 23.3 33 20 C33 16.7 30.3 14 27 14 L19 14 L19 18 Z M22 18 L27 18 C28.6 18 30 19.4 30 21 C30 22.6 28.6 24 27 24 L22 24 Z" fill="white" transform="translate(0, 2) scale(0.85) translate(2, 0)"/>
-  <text x="48" y="30" font-family="'Segoe UI', Arial, sans-serif" font-size="16" font-weight="700" fill="white" letter-spacing="0.5">Parley</text>
-  <text x="106" y="30" font-family="'Segoe UI', Arial, sans-serif" font-size="16" font-weight="300" fill="#6C63FF" letter-spacing="0.5">Media</text>
-</svg>

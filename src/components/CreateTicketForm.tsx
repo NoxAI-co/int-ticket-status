@@ -163,7 +163,7 @@ export default function CreateTicketForm() {
 
   if (createdTaskId) {
     return (
-      <div className="flex min-h-screen items-center justify-center bg-gradient-to-b from-background to-violet-500/5 px-4">
+      <div className="flex min-h-screen items-center justify-center bg-gradient-to-b from-background to-primary/5 px-4">
         <motion.div
           initial={{ opacity: 0, scale: 0.95 }}
           animate={{ opacity: 1, scale: 1 }}
@@ -216,7 +216,7 @@ export default function CreateTicketForm() {
       <header className="border-b bg-background px-4 py-3">
         <div className="flex items-center justify-between">
           <Link to="/" className="flex items-center gap-2 font-semibold">
-            <img className="h-10 rounded-md" src="logo-parley-media.svg" alt="Parley Media" />
+            <img className="h-10" src="logo.png" alt="Parley Media" />
           </Link>
           <nav className="flex gap-4 items-center">
             <Link
@@ -386,7 +386,7 @@ export default function CreateTicketForm() {
                 {...getRootProps()}
                 className={`border-2 border-dashed rounded-lg p-5 transition-colors cursor-pointer ${
                   isDragActive
-                    ? "border-violet-500 bg-violet-500/5"
+                  ? "border-primary bg-primary/5"
                     : files.length > 0
                     ? "border-muted bg-muted/20"
                     : "border-muted hover:border-muted-foreground/50"
@@ -428,7 +428,7 @@ export default function CreateTicketForm() {
                           className="flex items-center justify-between rounded-md border bg-background px-3 py-2"
                         >
                           <div className="flex items-center gap-2 min-w-0">
-                            <FileText className="h-4 w-4 text-violet-500 flex-shrink-0" />
+                            <FileText className="h-4 w-4 text-primary flex-shrink-0" />
                             <span className="text-sm truncate">{file.name}</span>
                             <span className="text-xs text-muted-foreground flex-shrink-0">
                               {(file.size / 1024).toFixed(0)} KB
