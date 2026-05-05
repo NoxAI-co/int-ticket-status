@@ -3,6 +3,10 @@ export interface CreateTaskPayload {
   markdown_description: string;
   priority: number;
   notify_all?: boolean;
+  custom_fields?: Array<{
+    id: string;
+    value: string | number;
+  }>;
 }
 
 export interface ClickUpTask {

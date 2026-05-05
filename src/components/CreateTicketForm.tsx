@@ -126,6 +126,12 @@ export default function CreateTicketForm() {
         name: form.asunto,
         markdown_description: buildDescription(),
         priority: form.prioridad,
+        custom_fields: [
+          {
+            id: "59ac21a2-70ce-4c6d-b0f3-005575ca2b14",
+            value: form.email,
+          },
+        ],
       });
 
       if (files.length > 0) {
